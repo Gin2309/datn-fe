@@ -26,13 +26,11 @@ import MainCard from "../../../../../components/MainCard";
 import Transitions from "../../../../../components/@extended/Transitions";
 
 // assets
-import avatar1 from "../../../../../assets/images/users/avatar-1.png";
 import { LogoutOutlined } from "@ant-design/icons";
-import { Logout } from "../../../../../services/auth.api";
 import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../../../store/reducers/auth";
-import { dingay } from "../../../../../assets/images/users";
+import avatar from "../../../../../assets/images/users/Avatar.svg";
 
 // tab panel wrapper
 function TabPanel({ children, value, index, ...other }) {
@@ -62,7 +60,6 @@ const Profile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
-  // const name = localStorage.getItem("user.name")
 
   const handleLogout = async () => {
     localStorage.removeItem("tokens");
@@ -101,13 +98,12 @@ const Profile = () => {
         onClick={handleToggle}
       >
         <Stack direction="row" spacing={2} alignItems="center" sx={{ p: 0.5 }}>
-          {/* <Avatar
+          <Avatar
             alt="profile user"
-            src={avatar1}
+            src={avatar}
             sx={{ width: 32, height: 32 }}
-          /> */}
-          <img src={dingay} alt="logo" height={32} width={44} />
-          <Typography variant="subtitle1">Admin</Typography>
+          />
+          <Typography variant="subtitle1">{user?.username}</Typography>
         </Stack>
       </ButtonBase>
       <Popper
@@ -158,13 +154,15 @@ const Profile = () => {
                           >
                             <Avatar
                               alt="profile user"
-                              src={avatar1}
+                              src={avatar}
                               sx={{ width: 32, height: 32 }}
                             />
                             <Stack>
-                              <Typography variant="h6">{user?.name}</Typography>
+                              <Typography variant="h6">
+                                {user?.username}
+                              </Typography>
                               <Typography variant="body2" color="textSecondary">
-                                developer
+                                {user?.role}
                               </Typography>
                             </Stack>
                           </Stack>

@@ -40,15 +40,11 @@ import {
   ExpandMore as ExpandMoreIcon,
 } from "@mui/icons-material";
 
+import CustomPagination from "../components/CustomPagination";
 import toast from "react-hot-toast";
 import { convertUnixTimestampToISO } from "../utils/formatTime";
 
-import {
-  deleteUser,
-  DisableUser,
-  EnableUser,
-  getAllUser,
-} from "../services/user.api";
+import { deleteUser, getUserList } from "../services/user.api";
 
 const UsersPage = () => {
   const queryClient = useQueryClient();
@@ -68,11 +64,10 @@ const UsersPage = () => {
   const { data: users, isLoading } = useQuery(
     ["USERS", formFilter],
     () =>
-      getAllUser(
+      getUserList(
         formFilter.email,
         formFilter.name,
         formFilter.phone,
-        formFilter.rank,
         formFilter.page,
         formFilter.pageSize
       ),
@@ -88,28 +83,6 @@ const UsersPage = () => {
       setOpenDialog(false);
     },
   });
-
-  const disableUserMutation = useMutation((_id) => DisableUser(_id), {
-    onSuccess: () => {
-      toast.success("Vô hiệu hóa người dùng thành công");
-      queryClient.invalidateQueries("USERS");
-    },
-  });
-
-  const enableUserMutation = useMutation((_id) => EnableUser(_id), {
-    onSuccess: () => {
-      toast.success("Kích hoạt người dùng thành công");
-      queryClient.invalidateQueries("USERS");
-    },
-  });
-
-  const handleSwitchChange = (_id, status) => {
-    if (status) {
-      enableUserMutation.mutate(_id);
-    } else {
-      disableUserMutation.mutate(_id);
-    }
-  };
 
   const DeleteClick = (event, row) => {
     event.stopPropagation();
@@ -263,12 +236,6 @@ const UsersPage = () => {
                 Số điện thoại
               </TableCell>
               <TableCell sx={{ color: "#fff" }} align="center">
-                Hạng
-              </TableCell>
-              <TableCell sx={{ color: "#fff" }} align="center">
-                Trạng thái
-              </TableCell>
-              <TableCell sx={{ color: "#fff" }} align="center">
                 Ngày tạo
               </TableCell>
               <TableCell sx={{ color: "#fff" }} align="center">
@@ -313,17 +280,6 @@ const UsersPage = () => {
                   <TableCell align="center">{row?.phone}</TableCell>
                   <TableCell align="center">{row?.rank}</TableCell>
                   <TableCell align="center">
-                    <Switch
-                      checked={row.status === "active"}
-                      onChange={(event) =>
-                        handleSwitchChange(row._id, event.target.checked)
-                      }
-                      onClick={(e) => {
-                        e.stopPropagation();
-                      }}
-                    />
-                  </TableCell>
-                  <TableCell align="center">
                     {convertUnixTimestampToISO(row?.createdAt)}
                   </TableCell>
                   <TableCell align="center">
@@ -361,71 +317,15 @@ const UsersPage = () => {
         </Table>
       </TableContainer>
 
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          mt: 3,
-        }}
-      >
-        <Stack
-          spacing={{ xs: 1, sm: 2, alignItems: "center" }}
-          direction="row"
-          useFlexGap
-          alignItems="center"
-          flexWrap="wrap"
-        >
-          <Typography variant="body" component="h6" sx={{ fontWeight: "400" }}>
-            Số lượng dữ liệu/1 trang
-          </Typography>
-
-          <FormControl sx={{ width: "100px" }}>
-            <Select
-              labelId="items-per-page-label"
-              id="items-per-page"
-              pageSize="small"
-              value={formFilter.pageSize}
-              onChange={(event) =>
-                setFormFilter({
-                  ...formFilter,
-                  pageSize: event.target.value,
-                  page: 1,
-                })
-              }
-            >
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={10}>10</MenuItem>
-              <MenuItem value={20}>20</MenuItem>
-              <MenuItem value={50}>50</MenuItem>
-              <MenuItem value={100}>100</MenuItem>
-            </Select>
-          </FormControl>
-        </Stack>
-        <Stack direction="row" alignItems="center" spacing={2}>
-          <Typography variant="body2" component="p" sx={{ fontWeight: "400" }}>
-            Hiển thị {currentCount} trên {totalCount}
-          </Typography>
-          <Pagination
-            count={totalPages}
-            shape="rounded"
-            color="primary"
-            page={currentPage}
-            onChange={(event, value) =>
-              setFormFilter({ ...formFilter, page: value })
-            }
-            renderItem={(item) => (
-              <PaginationItem
-                {...item}
-                disabled={
-                  (item.type === "next" && currentPage >= totalPages) ||
-                  (item.type === "previous" && currentPage === 1)
-                }
-              />
-            )}
-          />
-        </Stack>
-      </Box>
+      <CustomPagination
+        page={formFilter.page}
+        size={formFilter.pageSize}
+        formFilter={formFilter}
+        setFormFilter={setFormFilter}
+        total={totalCount}
+        totalPage={totalPages}
+        current={currentCount}
+      />
 
       <Dialog open={openDialog}>
         <DialogTitle fontWeight="bold" variant="h4">

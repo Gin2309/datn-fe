@@ -4,6 +4,7 @@ import MainLayout from "../layout/MainLayout";
 import FormUsers from "../modules/Users/FormUsers";
 
 const UsersPage = Loadable(lazy(() => import("../pages/UsersPage")));
+const TeacherPage = Loadable(lazy(() => import("../pages/TeacherPage")));
 const UserDetail = Loadable(lazy(() => import("../pages/UserDetail")));
 const MainRoutes = {
   path: "/admin",
@@ -13,6 +14,10 @@ const MainRoutes = {
     {
       path: "users",
       element: <UsersPage />,
+    },
+    {
+      path: "teachers",
+      element: <TeacherPage />,
     },
     // level 2
     {
