@@ -81,7 +81,9 @@ const AuthLogin = () => {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Stack spacing={1}>
-                <InputLabel htmlFor="phone-login">Số điện thoại</InputLabel>
+                <InputLabel htmlFor="phone-login">
+                  Tên đăng nhập/Số điện thoại
+                </InputLabel>
                 <OutlinedInput
                   id="phone-login"
                   type="text"

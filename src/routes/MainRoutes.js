@@ -1,7 +1,7 @@
 import { lazy } from "react";
 import Loadable from "../components/Loadable";
 import MainLayout from "../layout/MainLayout";
-import FormUsers from "../modules/Users/FormUsers";
+import FormUsers from "../modules/Users/FormUser/FormUsers";
 
 const UsersPage = Loadable(lazy(() => import("../pages/UsersPage")));
 const TeacherPage = Loadable(lazy(() => import("../pages/TeacherPage")));

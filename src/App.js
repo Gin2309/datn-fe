@@ -13,8 +13,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   const checkAuthToken = () => {
-    const accessToken = JSON.parse(localStorage.getItem("tokens"))?.access
-      ?.token;
+    const accessToken = JSON.parse(localStorage.getItem("tokens"));
 
     if (!accessToken) {
       navigate("/login", { replace: true });

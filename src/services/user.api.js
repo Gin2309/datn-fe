@@ -27,33 +27,22 @@ export const deleteUser = async (_id) => {
   }
 };
 
-export const getDetailsUser = async (_id) => {
+export const getDetailsUser = async (id) => {
   try {
-    const response = await axiosClient.get(`admin-admin/detail-user/${_id}`);
+    const response = await axiosClient.get(`admin/users/${id}`);
     return response.data;
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
-export const getUserList = async (
-  email,
-  name,
-  phone,
-  page,
-  pageSize,
-  from,
-  to
-) => {
+export const getUserList = async (role, keyword, page, pageSize) => {
   try {
     const queryParams = {
-      email: email,
-      name: name,
-      phone: phone,
+      role: role,
+      keyword: keyword,
       page: page,
       pageSize: pageSize,
-      from: from,
-      to: to,
     };
 
     for (const key in queryParams) {
