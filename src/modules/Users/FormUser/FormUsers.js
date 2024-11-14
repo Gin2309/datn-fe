@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { CustomInput } from "../../../components/CustomInput";
 import InputError from "../../../components/InputError";
 import CustomLabel from "../../../components/CustomLabel";
+import CustomDatePicker from "../../../components/CustomDatePicker";
 
 import { schema } from "./schema";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -30,18 +31,13 @@ const FormUsers = ({ mode }) => {
   const navigate = useNavigate();
   const id = params.id;
 
-  const { data, refetch } = useQuery(
-    ["DETAIL_USER", id],
-    () => getDetailsUser(id),
-    {
-      enabled: !!id,
-    }
-  );
+  const { data } = useQuery(["DETAIL_USER", id], () => getDetailsUser(id), {
+    enabled: !!id,
+  });
 
   const userData = data?.data;
 
   const {
-    setValue,
     handleSubmit,
     reset,
     control,
@@ -120,11 +116,28 @@ const FormUsers = ({ mode }) => {
       <div className="card">
         <div className=" grid grid-cols-2 gap-4">
           <Controller
+            name="username"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <div>
+                <CustomLabel label="Tên đăng nhập" required />
+                <CustomInput
+                  className="!h-10  "
+                  placeholder="Nhập tên đăng nhập"
+                  onChange={onChange}
+                  value={value}
+                />
+                <InputError error={errors.username?.message} />
+              </div>
+            )}
+          />
+
+          <Controller
             name="fullName"
             control={control}
             render={({ field: { onChange, value } }) => (
               <div>
-                <CustomLabel label="Họ và tên" />
+                <CustomLabel label="Họ và tên" required />
                 <CustomInput
                   className="!h-10  "
                   placeholder="Nhập họ và tên"
@@ -141,7 +154,7 @@ const FormUsers = ({ mode }) => {
             control={control}
             render={({ field: { onChange, value } }) => (
               <div>
-                <CustomLabel label="Email" />
+                <CustomLabel label="Email" required />
                 <CustomInput
                   className="!h-10  "
                   placeholder="Nhập email"
@@ -158,10 +171,10 @@ const FormUsers = ({ mode }) => {
             control={control}
             render={({ field: { onChange, value } }) => (
               <div>
-                <CustomLabel label="Số điện thoại" />
+                <CustomLabel label="Số điện thoại" required />
                 <CustomInput
                   className="!h-10  "
-                  placeholder="Enter your email"
+                  placeholder="Nhập số điện thoại"
                   onChange={onChange}
                   value={value}
                 />
@@ -171,11 +184,31 @@ const FormUsers = ({ mode }) => {
           />
 
           <Controller
+            name="birthDate"
+            control={control}
+            render={({ field: { onChange, value } }) => {
+              return (
+                <div>
+                  <CustomLabel label="Ngày sinh" required />
+                  <CustomDatePicker
+                    onChange={onChange}
+                    picker="date"
+                    value={value}
+                    className="h-10 w-full"
+                    placeholder="Chọn ngày sinh"
+                  />
+                  <InputError error={errors.birthDate?.message} />
+                </div>
+              );
+            }}
+          />
+
+          <Controller
             name="role"
             control={control}
             render={({ field: { onChange, value } }) => (
               <div>
-                <CustomLabel label="Vai trò" />
+                <CustomLabel label="Vai trò" required />
                 <Select
                   className="!h-10   w-full"
                   placeholder="Chọn vai trò"
@@ -194,7 +227,7 @@ const FormUsers = ({ mode }) => {
               control={control}
               render={({ field: { onChange, value } }) => (
                 <div>
-                  <CustomLabel label="Mật khẩu" />
+                  <CustomLabel label="Mật khẩu" required />
                   <CustomInput
                     className="!h-10  "
                     placeholder="Nhập mật khẩu"

@@ -1,8 +1,16 @@
 import * as yup from "yup";
 
 export const schema = yup.object().shape({
-  username: yup.string().trim().required("Đây là trường bắt buộc!"),
-  fullName: yup.string().trim().required("Đây là trường bắt buộc!"),
+  username: yup
+    .string()
+    .transform((value) => (value === null ? "" : value))
+    .trim()
+    .required("Đây là trường bắt buộc!"),
+  fullName: yup
+    .string()
+    .transform((value) => (value === null ? "" : value))
+    .trim()
+    .required("Đây là trường bắt buộc!"),
   phone: yup
     .string()
     .matches(/^\d+$/, "Số điện thoại phải là số")
@@ -18,13 +26,17 @@ export const schema = yup.object().shape({
     }
     return schema;
   }),
-  email: yup.string().when("$mode", {
-    is: "add",
-    then: yup
-      .string()
-      .email("Email không hợp lệ")
-      .required("Đây là trường bắt buộc!"),
-    otherwise: yup.string().notRequired(),
-  }),
-  role: yup.string().required("Vai trò là bắt buộc"),
+  email: yup
+    .string()
+    .transform((value) => (value === null ? "" : value))
+    .email("Email không hợp lệ")
+    .required("Đây là trường bắt buộc!"),
+  role: yup
+    .string()
+    .transform((value) => (value === null ? "" : value))
+    .required("Đây là trường là bắt buộc"),
+  birthDate: yup
+    .string()
+    .transform((value) => (value === null ? "" : value))
+    .required("Đây là trường là bắt buộc"),
 });

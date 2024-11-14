@@ -9,18 +9,18 @@ export const createUser = async (data) => {
   }
 };
 
-export const updateUser = async (_id, data) => {
+export const updateUser = async (id, data) => {
   try {
-    const response = await axiosClient.put(`admin/users/${_id}`, data);
+    const response = await axiosClient.put(`admin/users/${id}`, data);
     return response.data;
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
-export const deleteUser = async (_id) => {
+export const deleteUser = async (id) => {
   try {
-    const response = await axiosClient.delete(`admin/users/${_id}`);
+    const response = await axiosClient.delete(`admin/users/${id}`);
     return response.data;
   } catch (error) {
     throw new Error(error.message);

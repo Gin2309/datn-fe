@@ -4,11 +4,13 @@ import {
   FileDoneOutlined,
   TagsOutlined,
   AlignLeftOutlined,
-  UsergroupAddOutlined,
   FormOutlined,
-  CarOutlined,
   CrownOutlined,
 } from "@ant-design/icons";
+
+import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
+import ClassOutlinedIcon from "@mui/icons-material/ClassOutlined";
+import PermContactCalendarOutlinedIcon from "@mui/icons-material/PermContactCalendarOutlined";
 
 // icons
 const icons = {
@@ -16,10 +18,11 @@ const icons = {
   FileDoneOutlined,
   TagsOutlined,
   AlignLeftOutlined,
-  UsergroupAddOutlined,
   FormOutlined,
-  CarOutlined,
   CrownOutlined,
+  SchoolOutlinedIcon,
+  ClassOutlinedIcon,
+  PermContactCalendarOutlinedIcon,
 };
 
 const account = {
@@ -40,7 +43,23 @@ const account = {
       title: "Quản lý giáo viên",
       type: "item",
       url: "/admin/teachers",
-      icon: icons.UsergroupAddOutlined,
+      icon: icons.PermContactCalendarOutlinedIcon,
+      breadcrumbs: true,
+    },
+    {
+      id: "classes",
+      title: "Quản lý lớp học",
+      type: "item",
+      url: "/admin/classes",
+      icon: icons.SchoolOutlinedIcon,
+      breadcrumbs: true,
+    },
+    {
+      id: "subject",
+      title: "Quản lý môn học",
+      type: "item",
+      url: "/admin/subject",
+      icon: icons.ClassOutlinedIcon,
       breadcrumbs: true,
     },
   ],
