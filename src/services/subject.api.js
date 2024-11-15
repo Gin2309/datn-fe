@@ -1,15 +1,15 @@
 import axiosClient from "./base.api";
 
-export const createClasses = async (data) => {
+export const createSubject = async (data) => {
   try {
-    const response = await axiosClient.post("classes", data);
+    const response = await axiosClient.post("subjects", data);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const getClassesList = async (page, pageSize) => {
+export const getSubjectList = async (page, pageSize) => {
   try {
     const queryParams = {
       page: page,
@@ -22,7 +22,7 @@ export const getClassesList = async (page, pageSize) => {
       }
     }
 
-    const response = await axiosClient.get("classes", {
+    const response = await axiosClient.get("subjects", {
       params: queryParams,
     });
     return response.data;
@@ -31,27 +31,27 @@ export const getClassesList = async (page, pageSize) => {
   }
 };
 
-export const getDetailClasses = async (id) => {
+export const getDetailSubject = async (id) => {
   try {
-    const response = await axiosClient.get(`classses/${id}`);
+    const response = await axiosClient.get(`subjects/${id}`);
     return response.data;
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
-export const deleteClasses = async (id) => {
+export const deleteSubject = async (id) => {
   try {
-    const response = await axiosClient.delete(`classes/${id}`);
+    const response = await axiosClient.delete(`subjects/${id}`);
     return response.data;
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
-export const updateClasses = async (id, data) => {
+export const updateSubject = async (id, data) => {
   try {
-    const response = await axiosClient.put(`classes/${id}`, data);
+    const response = await axiosClient.put(`subjects/${id}`, data);
     return response.data;
   } catch (error) {
     throw new Error(error.message);

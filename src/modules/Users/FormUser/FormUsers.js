@@ -31,7 +31,7 @@ const FormUsers = ({ mode }) => {
   const navigate = useNavigate();
   const id = params.id;
 
-  const { data } = useQuery(["DETAIL_USER", id], () => getDetailsUser(id), {
+  const { data } = useQuery(["DETAIL", id], () => getDetailsUser(id), {
     enabled: !!id,
   });
 
@@ -114,7 +114,7 @@ const FormUsers = ({ mode }) => {
       </Box>
 
       <div className="card">
-        <div className=" grid grid-cols-2 gap-4">
+        <div className=" grid grid-cols-1 md:grid-cols-2 gap-4">
           <Controller
             name="username"
             control={control}

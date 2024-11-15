@@ -53,6 +53,12 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
+const roleLabels = {
+  admin: "Admin",
+  teacher: "Giáo viên",
+  student: "Học sinh",
+};
+
 // ==============================|| HEADER CONTENT - PROFILE ||============================== //
 
 const Profile = () => {
@@ -162,7 +168,7 @@ const Profile = () => {
                                 {user?.username}
                               </Typography>
                               <Typography variant="body2" color="textSecondary">
-                                {user?.role}
+                                {roleLabels[user?.role]}
                               </Typography>
                             </Stack>
                           </Stack>
