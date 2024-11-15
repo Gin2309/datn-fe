@@ -28,14 +28,6 @@ const overview = {
       breadcrumbs: true,
     },
     {
-      id: "reports",
-      title: "Báo cáo",
-      type: "item",
-      url: "/admin/reports",
-      icon: icons.FileDoneOutlined,
-      breadcrumbs: true,
-    },
-    {
       id: "notification",
       title: "Thông báo",
       type: "item",

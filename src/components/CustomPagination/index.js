@@ -77,7 +77,7 @@ const CustomPagination = ({
             <PaginationItem
               {...item}
               disabled={
-                (item.type === "next" && page >= total) ||
+                (item.type === "next" && page >= totalPage) ||
                 (item.type === "previous" && page === 1)
               }
             />

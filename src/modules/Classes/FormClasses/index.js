@@ -87,7 +87,7 @@ const FormClasses = ({ mode }) => {
         mb={3}
       >
         <h1 className="text-lg font-semibold">
-          {mode === "add" ? "Thêm người dùng" : "Chỉnh sửa người dùng"}
+          {mode === "add" ? "Thêm lớp học" : "Chỉnh sửa lớp học"}
         </h1>
         <div className="flex gap-2">
           <Button danger onClick={handleCancel}>
@@ -118,6 +118,41 @@ const FormClasses = ({ mode }) => {
                   value={value}
                 />
                 <InputError error={errors.name?.message} />
+              </div>
+            )}
+          />
+
+          <Controller
+            name="schoolYear"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <div>
+                <CustomLabel label="Năm học" required />
+                <CustomInput
+                  className="!h-10  "
+                  placeholder="Nhập năm học"
+                  onChange={onChange}
+                  value={value}
+                />
+                <InputError error={errors.schoolYear?.message} />
+              </div>
+            )}
+          />
+
+          <Controller
+            name="gradeLevel"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <div>
+                <CustomLabel label="Khối" required />
+                <CustomInput
+                  className="!h-10  "
+                  placeholder="Nhập khối"
+                  onChange={onChange}
+                  value={value}
+                  type="number"
+                />
+                <InputError error={errors.gradeLevel?.message} />
               </div>
             )}
           />

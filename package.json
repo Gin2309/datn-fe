@@ -62,7 +62,7 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "cross-env PORT=3008 react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

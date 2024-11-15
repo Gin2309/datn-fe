@@ -157,6 +157,8 @@ const Profile = () => {
                             direction="row"
                             spacing={1.25}
                             alignItems="center"
+                            onClick={() => navigate("/admin/profile")}
+                            className="cursor-pointer"
                           >
                             <Avatar
                               alt="profile user"

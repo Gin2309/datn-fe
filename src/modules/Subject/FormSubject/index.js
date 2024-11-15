@@ -87,7 +87,7 @@ const FormSubject = ({ mode }) => {
         mb={3}
       >
         <h1 className="text-lg font-semibold">
-          {mode === "add" ? "Thêm người dùng" : "Chỉnh sửa người dùng"}
+          {mode === "add" ? "Thêm môn học" : "Chỉnh sửa môn học"}
         </h1>
         <div className="flex gap-2">
           <Button danger onClick={handleCancel}>
