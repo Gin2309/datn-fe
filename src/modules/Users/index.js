@@ -38,13 +38,7 @@ const UserPage = () => {
 
   const { data, isLoading, refetch } = useQuery(
     ["data", formFilter],
-    () =>
-      getUserList(
-        formFilter.role,
-        formFilter.keyword,
-        formFilter.page,
-        formFilter.pageSize
-      ),
+    () => getUserList(formFilter),
     {
       refetchOnWindowFocus: false,
     }

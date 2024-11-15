@@ -11,6 +11,7 @@ const UsersPage = Loadable(lazy(() => import("../pages/UsersPage")));
 const TeacherPage = Loadable(lazy(() => import("../pages/TeacherPage")));
 const ClassesPage = Loadable(lazy(() => import("../pages/ClassesPage")));
 const SubjectPage = Loadable(lazy(() => import("../pages/SubjectPage")));
+const ProfilePage = Loadable(lazy(() => import("../pages/ProfilePage")));
 const UserDetail = Loadable(lazy(() => import("../pages/UserDetail")));
 
 const MainRoutes = {
@@ -39,6 +40,15 @@ const MainRoutes = {
       element: (
         <Guard
           element={<SubjectPage />}
+          allowedRoles={["admin", "teacher", "student"]}
+        />
+      ),
+    },
+    {
+      path: "profile",
+      element: (
+        <Guard
+          element={<ProfilePage />}
           allowedRoles={["admin", "teacher", "student"]}
         />
       ),
