@@ -4,11 +4,13 @@ import {
   FileDoneOutlined,
   TagsOutlined,
   AlignLeftOutlined,
-  UsergroupAddOutlined,
   FormOutlined,
-  CarOutlined,
   CrownOutlined,
 } from "@ant-design/icons";
+
+import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
+import ClassOutlinedIcon from "@mui/icons-material/ClassOutlined";
+import PermContactCalendarOutlinedIcon from "@mui/icons-material/PermContactCalendarOutlined";
 
 // icons
 const icons = {
@@ -16,10 +18,11 @@ const icons = {
   FileDoneOutlined,
   TagsOutlined,
   AlignLeftOutlined,
-  UsergroupAddOutlined,
   FormOutlined,
-  CarOutlined,
   CrownOutlined,
+  SchoolOutlinedIcon,
+  ClassOutlinedIcon,
+  PermContactCalendarOutlinedIcon,
 };
 
 const account = {
@@ -36,27 +39,27 @@ const account = {
       breadcrumbs: true,
     },
     {
-      id: "drivers",
-      title: "Quản lý tài xế",
+      id: "teachers",
+      title: "Quản lý giáo viên",
       type: "item",
-      url: "/admin/drivers",
-      icon: icons.UsergroupAddOutlined,
+      url: "/admin/teachers",
+      icon: icons.PermContactCalendarOutlinedIcon,
       breadcrumbs: true,
     },
     {
-      id: "vip",
-      title: "VIP",
+      id: "classes",
+      title: "Quản lý lớp học",
       type: "item",
-      url: "/admin/vip",
-      icon: icons.CrownOutlined,
+      url: "/admin/classes",
+      icon: icons.SchoolOutlinedIcon,
       breadcrumbs: true,
     },
     {
-      id: "drivers-form",
-      title: "Đơn đăng ký tài xế",
+      id: "subject",
+      title: "Quản lý môn học",
       type: "item",
-      url: "/admin/drivers-form",
-      icon: icons.FormOutlined,
+      url: "/admin/subject",
+      icon: icons.ClassOutlinedIcon,
       breadcrumbs: true,
     },
   ],

@@ -36,15 +36,12 @@ const AuthLogin = () => {
   const authMutation = useMutation(Login, {
     onSuccess: (data) => {
       const user = data?.data?.user;
-      const accessToken = data?.data?.tokens;
+      const accessToken = data?.data?.accessToken;
       dispatch(login({ user, tokens: accessToken }));
       toast.success("Đăng nhập thành công");
       setTimeout(() => {
         navigate("/admin/users", { replace: true });
       }, 1000);
-    },
-    onError: (error) => {
-      toast.error("Đăng nhập thất bại");
     },
   });
 
@@ -84,7 +81,9 @@ const AuthLogin = () => {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Stack spacing={1}>
-                <InputLabel htmlFor="phone-login">Tên/Số điện thoại</InputLabel>
+                <InputLabel htmlFor="phone-login">
+                  Tên đăng nhập/Số điện thoại
+                </InputLabel>
                 <OutlinedInput
                   id="phone-login"
                   type="text"
@@ -93,7 +92,7 @@ const AuthLogin = () => {
                   onBlur={handleBlur}
                   onChange={handleChange}
                   fullWidth
-                  placeholder="Nhâp tên/số diện thoại"
+                  placeholder="Nhâp số diện thoại"
                   error={Boolean(
                     touched.phoneOrUsername && errors.phoneOrUsername
                   )}

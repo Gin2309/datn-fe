@@ -9,8 +9,7 @@ let hasShown401Message = false;
 
 axiosClient.interceptors.request.use(
   (config) => {
-    const accessToken = JSON.parse(localStorage.getItem("tokens"))?.access
-      ?.token;
+    const accessToken = JSON.parse(localStorage.getItem("tokens"));
     if (accessToken) {
       config.headers["Authorization"] = `Bearer ${accessToken}`;
     }

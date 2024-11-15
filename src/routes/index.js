@@ -5,14 +5,10 @@ import MainRoutes from "./MainRoutes";
 
 const ThemeRoutes = () => {
   const navigate = useNavigate();
-
   useEffect(() => {
-    const access_token = JSON.parse(localStorage.getItem("tokens"))?.access
-      ?.token;
-    const refresh_token = JSON.parse(localStorage.getItem("tokens"))?.refresh
-      ?.token;
+    const access_token = JSON.parse(localStorage.getItem("tokens"));
 
-    if (!refresh_token && !access_token) {
+    if (!access_token) {
       navigate("/login", { replace: true });
     }
   }, []);

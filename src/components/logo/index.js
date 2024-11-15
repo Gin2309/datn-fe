@@ -21,7 +21,7 @@ const LogoSection = ({ sx, to }) => {
       sx={sx}
     >
       <Typography variant="h3" gutterBottom>
-        DiNgay LaDi
+        Sổ liên lạc điện tử
       </Typography>
     </ButtonBase>
   );

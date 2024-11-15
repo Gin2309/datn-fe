@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card {
+  @apply p-6 bg-[#fff] rounded-lg gap-6 flex flex-col;
+}
