@@ -16,7 +16,7 @@ const AddModal = ({
   onSelection,
 }) => {
   const [formFilter, setFormFilter] = useState({
-    role: "student",
+    role: "teacher",
     keyword: "",
     page: 1,
     pageSize: 20,
@@ -93,7 +93,7 @@ const AddModal = ({
       onSubmit={() => {}}
       width={1000}
       customFooter={true}
-      title="Thêm học sinh vào lớp học"
+      title="Thêm giáo viên"
     >
       <div className="card">
         <Table

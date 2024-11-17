@@ -55,7 +55,7 @@ const account = {
       url: "/admin/classes",
       icon: icons.SchoolOutlinedIcon,
       breadcrumbs: true,
-      allowedRoles: ["teacher"],
+      allowedRoles: ["admin", "teacher"],
     },
     {
       id: "subject",
@@ -73,7 +73,6 @@ const account = {
       url: "/admin/profile",
       icon: icons.AccountCircleOutlinedIcon,
       breadcrumbs: true,
-      allowedRoles: ["admin", "teacher", "student"],
     },
   ],
 };

@@ -1,14 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import { Box } from "@mui/material";
 
-import { Button, Select } from "antd";
+import { Button, Select, Table } from "antd";
 
 import toast from "react-hot-toast";
 import { CustomInput } from "../../../components/CustomInput";
 import InputError from "../../../components/InputError";
 import CustomLabel from "../../../components/CustomLabel";
-import CustomDatePicker from "../../../components/CustomDatePicker";
+import AddModal from "./AddModal";
+
+import CloseIcon from "@mui/icons-material/Close";
 
 import { schema } from "./schema";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -20,16 +22,13 @@ import {
   createSubject,
 } from "../../../services/subject.api";
 
-const roleOptions = [
-  { value: "admin", label: "Admin" },
-  { value: "teacher", label: "Giáo viên" },
-  { value: "student", label: "Học sinh" },
-];
-
 const FormSubject = ({ mode }) => {
   const params = useParams();
   const navigate = useNavigate();
   const id = params.id;
+  const [open, setOpen] = useState(false);
+  const [student, setStudent] = useState([]);
+  const [studentIds, setStudentIds] = useState([]);
 
   const { data } = useQuery(["DETAIL", id], () => getDetailSubject(id), {
     enabled: !!id,
@@ -78,6 +77,49 @@ const FormSubject = ({ mode }) => {
     navigate(-1);
   };
 
+  const handleAdd = (items) => {
+    setStudent((prev) => [...prev, ...items]);
+  };
+
+  const handleRemove = (id) => {
+    setStudent((prev) => prev.filter((student) => student.id !== id));
+  };
+
+  const columns = [
+    {
+      title: "STT",
+      key: "index",
+      align: "center",
+      render: (_, __, index) => index + 1,
+    },
+    {
+      title: "Họ và tên",
+      dataIndex: "username",
+      key: "username",
+      align: "center",
+    },
+    {
+      title: "Số điện thoại",
+      dataIndex: "phone",
+      key: "phone",
+      align: "center",
+      render: (phone) => phone || "---",
+    },
+    {
+      title: "Thao tác",
+      key: "action",
+      align: "center",
+      render: (_, record) => (
+        <span
+          className="cursor-pointer"
+          onClick={() => handleRemove(record.id)}
+        >
+          <CloseIcon />
+        </span>
+      ),
+    },
+  ];
+
   return (
     <Box padding={3}>
       <Box
@@ -121,28 +163,31 @@ const FormSubject = ({ mode }) => {
               </div>
             )}
           />
-
-          {/* {mode === "add" && (
-            <Controller
-              name="password"
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <div>
-                  <CustomLabel label="Mật khẩu" required />
-                  <CustomInput
-                    className="!h-10  "
-                    placeholder="Nhập mật khẩu"
-                    onChange={onChange}
-                    value={value}
-                    type="password"
-                  />
-                  <InputError error={errors.password?.message} />
-                </div>
-              )}
-            />
-          )} */}
         </div>
       </div>
+
+      <div className="card">
+        <Table
+          columns={columns}
+          dataSource={student}
+          rowKey="id"
+          pagination={false}
+        />
+        <Button
+          type="primary"
+          onClick={() => setOpen(true)}
+          className="w-[120px]"
+        >
+          Thêm giáo viên
+        </Button>
+      </div>
+
+      <AddModal
+        open={open}
+        onCancel={() => setOpen(false)}
+        Ids={studentIds}
+        onSelection={handleAdd}
+      />
     </Box>
   );
 };

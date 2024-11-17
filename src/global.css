@@ -5,3 +5,15 @@
 .card {
   @apply p-6 bg-[#fff] rounded-lg gap-6 flex flex-col;
 }
+
+.css-1lnm2cr-MuiPaper-root-MuiAppBar-root {
+  z-index: 777 !important;
+}
+
+.css-18swi0r-MuiPaper-root-MuiDrawer-paper {
+  z-index: 777 !important;
+}
+
+.css-10tnq6j {
+  z-index: 800 !important;
+}
