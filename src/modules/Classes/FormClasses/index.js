@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
+
 import { Box } from "@mui/material";
-
-import { Button, Select } from "antd";
-
+import { Button, Select, Table } from "antd";
 import toast from "react-hot-toast";
 import { CustomInput } from "../../../components/CustomInput";
 import InputError from "../../../components/InputError";
 import CustomLabel from "../../../components/CustomLabel";
-import CustomDatePicker from "../../../components/CustomDatePicker";
+import AddModal from "./AddModal";
+
+import CloseIcon from "@mui/icons-material/Close";
 
 import { schema } from "./schema";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -19,17 +20,25 @@ import {
   createClasses,
   getDetailClasses,
 } from "../../../services/classes.api";
-
-const roleOptions = [
-  { value: "admin", label: "Admin" },
-  { value: "teacher", label: "Giáo viên" },
-  { value: "student", label: "Học sinh" },
-];
+import { getUserList } from "../../../services/user.api";
 
 const FormClasses = ({ mode }) => {
   const params = useParams();
   const navigate = useNavigate();
   const id = params.id;
+  const [open, setOpen] = useState(false);
+  const [student, setStudent] = useState([]);
+  const [studentIds, setStudentIds] = useState([]);
+  const [formFilter, setFormFilter] = useState({
+    role: "teacher",
+    keyword: "",
+    page: 1,
+    pageSize: 20,
+  });
+
+  useEffect(() => {
+    setStudentIds(student.length > 0 ? student.map((item) => item.id) : []);
+  }, [student]);
 
   const { data } = useQuery(["DETAIL", id], () => getDetailClasses(id), {
     enabled: !!id,
@@ -37,8 +46,23 @@ const FormClasses = ({ mode }) => {
 
   const detail = data?.data;
 
+  const { data: teacher } = useQuery(
+    ["data", formFilter],
+    () =>
+      getUserList(
+        formFilter.role,
+        formFilter.keyword,
+        formFilter.page,
+        formFilter.pageSize
+      ),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
+
   const {
     handleSubmit,
+    getValues,
     reset,
     control,
     formState: { errors },
@@ -48,6 +72,9 @@ const FormClasses = ({ mode }) => {
     context: { mode },
     defaultValues: {
       name: detail?.name || "",
+      schoolYear: detail?.schoolYear || "",
+      gradeLevel: detail?.gradeLevel || "",
+      teacherId: detail?.gradeLevel || null,
     },
   });
 
@@ -55,6 +82,9 @@ const FormClasses = ({ mode }) => {
     if (mode !== "add" && data) {
       reset({
         name: detail?.name,
+        schoolYear: detail?.schoolYear || "",
+        gradeLevel: detail?.gradeLevel || "",
+        teacherId: detail?.gradeLevel || null,
       });
     }
   }, [mode, detail]);
@@ -70,13 +100,63 @@ const FormClasses = ({ mode }) => {
     }
   );
 
-  const onSubmit = (data) => {
-    mutationAction(data);
+  const onSubmit = () => {
+    const data = getValues();
+
+    const submitedData = {
+      ...data,
+      studentIds: studentIds,
+    };
+
+    mutationAction(submitedData);
+  };
+
+  const handleAdd = (items) => {
+    setStudent((prev) => [...prev, ...items]);
+  };
+
+  const handleRemove = (id) => {
+    setStudent((prev) => prev.filter((student) => student.id !== id));
   };
 
   const handleCancel = () => {
     navigate(-1);
   };
+
+  const columns = [
+    {
+      title: "STT",
+      key: "index",
+      align: "center",
+      render: (_, __, index) => index + 1,
+    },
+    {
+      title: "Họ và tên",
+      dataIndex: "username",
+      key: "username",
+      align: "center",
+    },
+    {
+      title: "Số điện thoại",
+      dataIndex: "phone",
+      key: "phone",
+      align: "center",
+      render: (phone) => phone || "---",
+    },
+    {
+      title: "Thao tác",
+      key: "action",
+      align: "center",
+      render: (_, record) => (
+        <span
+          className="cursor-pointer"
+          onClick={() => handleRemove(record.id)}
+        >
+          <CloseIcon />
+        </span>
+      ),
+    },
+  ];
 
   return (
     <Box padding={3}>
@@ -156,8 +236,60 @@ const FormClasses = ({ mode }) => {
               </div>
             )}
           />
+
+          <Controller
+            name="teacherId"
+            control={control}
+            render={({ field: { onChange, value } }) => {
+              return (
+                <div>
+                  <CustomLabel label="Giáo viên chủ nhiệm" required />
+                  <Select
+                    options={teacher?.data?.map((teacher) => ({
+                      value: teacher.id,
+                      label: teacher.fullName,
+                    }))}
+                    filterOption={(input, option) =>
+                      (option?.label ?? "")
+                        .toLowerCase()
+                        .includes(input.toLowerCase())
+                    }
+                    showSearch={true}
+                    onChange={onChange}
+                    value={value}
+                    className="w-full h-10"
+                    placeholder="Chọn giáo viên chủ nhiệm"
+                  />
+                  <InputError error={errors.teacherId?.message} />
+                </div>
+              );
+            }}
+          />
         </div>
       </div>
+
+      <div className="card">
+        <Table
+          columns={columns}
+          dataSource={student}
+          rowKey="id"
+          pagination={false}
+        />
+        <Button
+          type="primary"
+          onClick={() => setOpen(true)}
+          className="w-[120px]"
+        >
+          Thêm học sinh
+        </Button>
+      </div>
+
+      <AddModal
+        open={open}
+        onCancel={() => setOpen(false)}
+        Ids={studentIds}
+        onSelection={handleAdd}
+      />
     </Box>
   );
 };

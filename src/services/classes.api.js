@@ -33,7 +33,7 @@ export const getClassesList = async (page, pageSize) => {
 
 export const getDetailClasses = async (id) => {
   try {
-    const response = await axiosClient.get(`classses/${id}`);
+    const response = await axiosClient.get(`classes/${id}`);
     return response.data;
   } catch (error) {
     throw new Error(error.message);
