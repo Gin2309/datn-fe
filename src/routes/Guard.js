@@ -16,7 +16,7 @@ const Guard = ({ element, allowedRoles }) => {
   }, [role, allowedRoles, hasShownToast]);
 
   if (!allowedRoles.includes(role)) {
-    return <Navigate to="/admin/users" replace />;
+    return <Navigate to="/admin/profile" replace />;
   }
 
   return element;

@@ -34,6 +34,7 @@ const FormClasses = ({ mode }) => {
     keyword: "",
     page: 1,
     pageSize: 20,
+    isAddClass: false,
   });
 
   useEffect(() => {
@@ -53,7 +54,8 @@ const FormClasses = ({ mode }) => {
         formFilter.role,
         formFilter.keyword,
         formFilter.page,
-        formFilter.pageSize
+        formFilter.pageSize,
+        formFilter.isAddClass
       ),
     {
       refetchOnWindowFocus: false,
@@ -73,8 +75,8 @@ const FormClasses = ({ mode }) => {
     defaultValues: {
       name: detail?.name || "",
       schoolYear: detail?.schoolYear || "",
-      gradeLevel: detail?.gradeLevel || "",
-      teacherId: detail?.gradeLevel || null,
+      teacherId: detail?.teacherId || null,
+      studentIds: detail?.studentIds || [],
     },
   });
 
@@ -83,8 +85,8 @@ const FormClasses = ({ mode }) => {
       reset({
         name: detail?.name,
         schoolYear: detail?.schoolYear || "",
-        gradeLevel: detail?.gradeLevel || "",
-        teacherId: detail?.gradeLevel || null,
+        teacherId: detail?.teacherId || null,
+        studentIds: detail?.studentIds || [],
       });
     }
   }, [mode, detail]);
@@ -215,24 +217,6 @@ const FormClasses = ({ mode }) => {
                   value={value}
                 />
                 <InputError error={errors.schoolYear?.message} />
-              </div>
-            )}
-          />
-
-          <Controller
-            name="gradeLevel"
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <div>
-                <CustomLabel label="Khối" required />
-                <CustomInput
-                  className="!h-10  "
-                  placeholder="Nhập khối"
-                  onChange={onChange}
-                  value={value}
-                  type="number"
-                />
-                <InputError error={errors.gradeLevel?.message} />
               </div>
             )}
           />

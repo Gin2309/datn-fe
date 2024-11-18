@@ -32,10 +32,6 @@ const Subject = () => {
     pageSize: 20,
   });
 
-  const currentTab = tabs.find((tab) => tab.key === formFilter.role) || {
-    label: "Tất cả tài khoản",
-  };
-
   const { data, isLoading, refetch } = useQuery(
     ["data", formFilter],
     () =>
@@ -82,20 +78,6 @@ const Subject = () => {
       dataIndex: "name",
       key: "name",
       align: "center",
-    },
-    {
-      title: "Số điện thoại",
-      dataIndex: "phone",
-      key: "phone",
-      align: "center",
-      render: (phone) => phone || "---",
-    },
-    {
-      title: "Vai trò",
-      dataIndex: "role",
-      key: "role",
-      align: "center",
-      render: (value) => <span className="capitalize">{value}</span>,
     },
     {
       title: "Ngày Tạo",

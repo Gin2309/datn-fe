@@ -14,12 +14,16 @@ const AddModal = ({
   isSubmitting,
   Ids,
   onSelection,
+  subjectId,
 }) => {
   const [formFilter, setFormFilter] = useState({
     role: "teacher",
     keyword: "",
     page: 1,
     pageSize: 20,
+    isAddClass: null,
+    subjectId: subjectId,
+    classesId: "",
   });
   const [studentIds, setStudentIds] = useState([]);
 
@@ -30,7 +34,10 @@ const AddModal = ({
         formFilter.role,
         formFilter.keyword,
         formFilter.page,
-        formFilter.pageSize
+        formFilter.pageSize,
+        formFilter.isAddClass,
+        formFilter.subjectId,
+        formFilter.classesId
       ),
     {
       refetchOnWindowFocus: false,

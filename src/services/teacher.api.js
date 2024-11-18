@@ -1,45 +1,19 @@
 import axiosClient from "./base.api";
 
-export const createTeacher = async (data) => {
+export const getTeacher = async () => {
   try {
-    const response = await axiosClient.post("admin/teachers", data);
+    const response = await axiosClient.get("teachers/profile");
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const getTeacherList = async (
-  email,
-  name,
-  phone,
-  page,
-  pageSize,
-  from,
-  to
-) => {
+export const updateTeacher = async (data) => {
   try {
-    const queryParams = {
-      email: email,
-      name: name,
-      phone: phone,
-      page: page,
-      pageSize: pageSize,
-      from: from,
-      to: to,
-    };
-
-    for (const key in queryParams) {
-      if (queryParams[key] === "") {
-        delete queryParams[key];
-      }
-    }
-
-    const response = await axiosClient.get("admin/teachers", {
-      params: queryParams,
-    });
+    const response = await axiosClient.patch("teachers/update-profile".data);
     return response.data;
   } catch (error) {
-    throw new Error(error.message);
+    throw error;
   }
 };

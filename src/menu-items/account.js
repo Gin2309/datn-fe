@@ -31,6 +31,14 @@ const account = {
   type: "group",
   children: [
     {
+      id: "profile",
+      title: "Profile",
+      type: "item",
+      url: "/admin/profile",
+      icon: icons.AccountCircleOutlinedIcon,
+      breadcrumbs: true,
+    },
+    {
       id: "users",
       title: "Quản lý người dùng",
       type: "item",
@@ -65,14 +73,6 @@ const account = {
       icon: icons.ClassOutlinedIcon,
       breadcrumbs: true,
       allowedRoles: ["admin", "teacher"],
-    },
-    {
-      id: "profile",
-      title: "Profile",
-      type: "item",
-      url: "/admin/profile",
-      icon: icons.AccountCircleOutlinedIcon,
-      breadcrumbs: true,
     },
   ],
 };

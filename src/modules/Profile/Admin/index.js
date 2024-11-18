@@ -1,24 +1,18 @@
 import React, { useEffect } from "react";
-import { useParams, useNavigate } from "react-router";
-
-import { Box } from "@mui/material";
-import { Button, Select } from "antd";
 
 import toast from "react-hot-toast";
+import { Box } from "@mui/material";
+import { Button, Select } from "antd";
+import CustomLabel from "../../../components/CustomLabel";
 import { CustomInput } from "../../../components/CustomInput";
 import InputError from "../../../components/InputError";
-import CustomLabel from "../../../components/CustomLabel";
 import CustomDatePicker from "../../../components/CustomDatePicker";
 
 import { schema } from "./schema";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { getDetailsUser, updateUser } from "../../../services/user.api";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
-import {
-  updateUser,
-  createUser,
-  getDetailsUser,
-} from "../../../services/user.api";
 
 const roleOptions = [
   { value: "admin", label: "Admin" },
@@ -26,12 +20,8 @@ const roleOptions = [
   { value: "student", label: "Học sinh" },
 ];
 
-const FormUsers = ({ mode }) => {
-  const params = useParams();
-  const navigate = useNavigate();
-  const id = params.id;
-
-  const { data } = useQuery(["DETAIL", id], () => getDetailsUser(id), {
+const Admin = ({ id }) => {
+  const { data, refetch } = useQuery(["DETAIL", id], () => getDetailsUser(id), {
     enabled: !!id,
   });
 
@@ -39,13 +29,13 @@ const FormUsers = ({ mode }) => {
 
   const {
     handleSubmit,
+    getValues,
     reset,
     control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
-    context: { mode },
     defaultValues: {
       fullName: userData?.fullName || "",
       username: userData?.username || "",
@@ -57,7 +47,7 @@ const FormUsers = ({ mode }) => {
   });
 
   useEffect(() => {
-    if (mode !== "add" && data && userData) {
+    if (userData) {
       reset({
         fullName: userData?.fullName,
         username: userData?.username,
@@ -67,25 +57,23 @@ const FormUsers = ({ mode }) => {
         role: userData?.role,
       });
     }
-  }, [mode, userData]);
+  }, [userData]);
 
-  const { mutate: mutateCreateUser, isLoading } = useMutation(
-    (data) => (mode === "add" ? createUser(data) : updateUser(id, data)),
+  const { mutate: updateMuation, isLoading } = useMutation(
+    (data) => updateUser(id, data),
     {
       onSuccess: async () => {
-        reset();
-        navigate("/admin/users", { replace: true });
+        refetch();
         toast.success("Thành công");
+      },
+      onError: (err) => {
+        toast.error(err.response?.data?.message);
       },
     }
   );
 
   const onSubmit = (data) => {
-    mutateCreateUser(data);
-  };
-
-  const handleCancel = () => {
-    navigate(-1);
+    updateMuation(data);
   };
 
   return (
@@ -96,21 +84,15 @@ const FormUsers = ({ mode }) => {
         alignItems="center"
         mb={3}
       >
-        <h1 className="text-lg font-semibold">
-          {mode === "add" ? "Thêm người dùng" : "Chỉnh sửa người dùng"}
-        </h1>
-        <div className="flex gap-2">
-          <Button danger onClick={handleCancel}>
-            Hủy
-          </Button>
-          <Button
-            type="primary"
-            onClick={handleSubmit(onSubmit)}
-            loading={isLoading}
-          >
-            {mode === "add" ? "Tạo" : "Lưu"}
-          </Button>
-        </div>
+        <h1 className="text-lg font-semibold">Thông tin cá nhân</h1>
+
+        <Button
+          type="primary"
+          onClick={handleSubmit(onSubmit)}
+          loading={isLoading}
+        >
+          Lưu
+        </Button>
       </Box>
 
       <div className="card">
@@ -215,35 +197,16 @@ const FormUsers = ({ mode }) => {
                   onChange={onChange}
                   value={value}
                   options={roleOptions}
+                  disabled
                 />
                 <InputError error={errors.role?.message} />
               </div>
             )}
           />
-
-          {mode === "add" && (
-            <Controller
-              name="password"
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <div>
-                  <CustomLabel label="Mật khẩu" required />
-                  <CustomInput
-                    className="!h-10  "
-                    placeholder="Nhập mật khẩu"
-                    onChange={onChange}
-                    value={value}
-                    type="password"
-                  />
-                  <InputError error={errors.password?.message} />
-                </div>
-              )}
-            />
-          )}
         </div>
       </div>
     </Box>
   );
 };
 
-export default FormUsers;
+export default Admin;

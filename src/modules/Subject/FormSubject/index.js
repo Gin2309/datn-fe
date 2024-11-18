@@ -30,6 +30,10 @@ const FormSubject = ({ mode }) => {
   const [student, setStudent] = useState([]);
   const [studentIds, setStudentIds] = useState([]);
 
+  useEffect(() => {
+    setStudentIds(student.length > 0 ? student.map((item) => item.id) : []);
+  }, [student]);
+
   const { data } = useQuery(["DETAIL", id], () => getDetailSubject(id), {
     enabled: !!id,
   });
@@ -37,6 +41,7 @@ const FormSubject = ({ mode }) => {
   const detail = data?.data;
 
   const {
+    getValues,
     handleSubmit,
     reset,
     control,
@@ -69,8 +74,15 @@ const FormSubject = ({ mode }) => {
     }
   );
 
-  const onSubmit = (data) => {
-    mutationAction(data);
+  const onSubmit = () => {
+    const data = getValues();
+
+    const submitedData = {
+      ...data,
+      teacherIds: studentIds,
+    };
+
+    mutationAction(submitedData);
   };
 
   const handleCancel = () => {
@@ -146,7 +158,7 @@ const FormSubject = ({ mode }) => {
       </Box>
 
       <div className="card">
-        <div className=" grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="">
           <Controller
             name="name"
             control={control}
@@ -187,6 +199,7 @@ const FormSubject = ({ mode }) => {
         onCancel={() => setOpen(false)}
         Ids={studentIds}
         onSelection={handleAdd}
+        subjectId={id}
       />
     </Box>
   );

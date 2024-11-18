@@ -13,7 +13,6 @@ import { IconButton, Tooltip } from "@mui/material";
 import { Delete as DeleteIcon, Edit as EditIcon } from "@mui/icons-material";
 
 import { convertUnixTimestampToISO } from "../../utils/formatTime";
-import { useSelector } from "react-redux";
 
 const tabs = [
   { key: "", label: "Tất cả tài khoản" },
@@ -32,8 +31,6 @@ const UserPage = () => {
     page: 1,
     pageSize: 20,
   });
-  const user = useSelector((state) => state.auth.user);
-  console.log(user.role);
 
   const currentTab = tabs.find((tab) => tab.key === formFilter.role) || {
     label: "Tất cả tài khoản",

@@ -36,13 +36,24 @@ export const getDetailsUser = async (id) => {
   }
 };
 
-export const getUserList = async (role, keyword, page, pageSize) => {
+export const getUserList = async (
+  role,
+  keyword,
+  page,
+  pageSize,
+  isAddClass,
+  subjectId,
+  classesId
+) => {
   try {
     const queryParams = {
       role: role,
       keyword: keyword,
       page: page,
       pageSize: pageSize,
+      isAddClass: isAddClass,
+      subjectId: subjectId,
+      classesId: classesId,
     };
 
     for (const key in queryParams) {
