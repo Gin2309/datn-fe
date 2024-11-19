@@ -167,7 +167,7 @@ const Profile = () => {
                             />
                             <Stack>
                               <Typography variant="h6">
-                                {user?.username}
+                                {user?.fullName}
                               </Typography>
                               <Typography variant="body2" color="textSecondary">
                                 {roleLabels[user?.role]}

@@ -40,7 +40,7 @@ const AuthLogin = () => {
       dispatch(login({ user, tokens: accessToken }));
       toast.success("Đăng nhập thành công");
       setTimeout(() => {
-        navigate("/admin/users", { replace: true });
+        navigate("/admin/profile", { replace: true });
       }, 1000);
     },
   });

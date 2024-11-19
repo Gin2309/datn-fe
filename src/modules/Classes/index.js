@@ -84,18 +84,11 @@ const Classes = () => {
       align: "center",
     },
     {
-      title: "Số điện thoại",
-      dataIndex: "phone",
-      key: "phone",
+      title: "Số học sinh",
+      dataIndex: "quantity",
+      key: "quantity",
       align: "center",
-      render: (phone) => phone || "---",
-    },
-    {
-      title: "Vai trò",
-      dataIndex: "role",
-      key: "role",
-      align: "center",
-      render: (value) => <span className="capitalize">{value}</span>,
+      render: (value) => value || "---",
     },
     {
       title: "Ngày Tạo",

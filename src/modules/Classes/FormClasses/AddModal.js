@@ -20,6 +20,9 @@ const AddModal = ({
     keyword: "",
     page: 1,
     pageSize: 20,
+    isAddClass: false,
+    subjectId: "",
+    classesId: "",
   });
   const [studentIds, setStudentIds] = useState([]);
 
@@ -30,7 +33,10 @@ const AddModal = ({
         formFilter.role,
         formFilter.keyword,
         formFilter.page,
-        formFilter.pageSize
+        formFilter.pageSize,
+        formFilter.isAddClass,
+        formFilter.subjectId,
+        formFilter.classesId
       ),
     {
       refetchOnWindowFocus: false,

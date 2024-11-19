@@ -6,4 +6,5 @@ export const schema = yup.object().shape({
     .transform((value) => (value === null ? "" : value))
     .trim()
     .required("Đây là trường bắt buộc!"),
+  teacherIds: yup.array().optional(),
 });
