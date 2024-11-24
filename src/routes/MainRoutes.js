@@ -8,11 +8,13 @@ import FormClasses from "../modules/Classes/FormClasses";
 import FormSubject from "../modules/Subject/FormSubject";
 
 const UsersPage = Loadable(lazy(() => import("../pages/UsersPage")));
-const TeacherPage = Loadable(lazy(() => import("../pages/TeacherPage")));
+const GradePage = Loadable(lazy(() => import("../pages/GradePage")));
 const ClassesPage = Loadable(lazy(() => import("../pages/ClassesPage")));
 const SubjectPage = Loadable(lazy(() => import("../pages/SubjectPage")));
 const ProfilePage = Loadable(lazy(() => import("../pages/ProfilePage")));
 const UserDetail = Loadable(lazy(() => import("../pages/UserDetail")));
+const SendNoti = Loadable(lazy(() => import("../pages/SendNoti")));
+const Noti = Loadable(lazy(() => import("../pages/Noti")));
 
 const MainRoutes = {
   path: "/admin",
@@ -21,13 +23,13 @@ const MainRoutes = {
     // level 1
     {
       path: "users",
-      element: (
-        <Guard element={<UsersPage />} allowedRoles={["admin", "teacher"]} />
-      ),
+      element: <Guard element={<UsersPage />} allowedRoles={["admin"]} />,
     },
     {
-      path: "teachers",
-      element: <Guard element={<TeacherPage />} allowedRoles={["admin"]} />,
+      path: "grade",
+      element: (
+        <Guard element={<GradePage />} allowedRoles={["admin", "teacher"]} />
+      ),
     },
     {
       path: "classes",
@@ -53,12 +55,23 @@ const MainRoutes = {
         />
       ),
     },
+    {
+      path: "send-noti",
+      element: <Guard element={<SendNoti />} allowedRoles={["admin"]} />,
+    },
+    {
+      path: "notification",
+      element: (
+        <Guard
+          element={<Noti />}
+          allowedRoles={["admin", "teacher", "student"]}
+        />
+      ),
+    },
     // level 2
     {
       path: "user-detail/:id",
-      element: (
-        <Guard element={<UserDetail />} allowedRoles={["admin", "teacher"]} />
-      ),
+      element: <Guard element={<UserDetail />} allowedRoles={["admin"]} />,
     },
     // level 3
     {
