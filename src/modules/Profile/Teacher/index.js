@@ -8,7 +8,7 @@ import { CustomInput } from "../../../components/CustomInput";
 import InputError from "../../../components/InputError";
 import CustomDatePicker from "../../../components/CustomDatePicker";
 
-import { Row, Col, Card, List, Typography } from "antd";
+import { List, Typography } from "antd";
 import { getTeacher, updateTeacher } from "../../../services/teacher.api";
 import { schema } from "./schema";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -191,6 +191,7 @@ const Teacher = ({ id }) => {
           </div>
         </div>
       </div>
+
       <div className="card shadow-md">
         <Typography.Title level={4}>Danh sách lớp học</Typography.Title>
         <div className="-mt-8">

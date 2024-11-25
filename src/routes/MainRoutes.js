@@ -27,24 +27,15 @@ const MainRoutes = {
     },
     {
       path: "grade",
-      element: (
-        <Guard element={<GradePage />} allowedRoles={["admin", "teacher"]} />
-      ),
+      element: <Guard element={<GradePage />} allowedRoles={["teacher"]} />,
     },
     {
       path: "classes",
-      element: (
-        <Guard element={<ClassesPage />} allowedRoles={["admin", "teacher"]} />
-      ),
+      element: <Guard element={<ClassesPage />} allowedRoles={["admin"]} />,
     },
     {
       path: "subject",
-      element: (
-        <Guard
-          element={<SubjectPage />}
-          allowedRoles={["admin", "teacher", "student"]}
-        />
-      ),
+      element: <Guard element={<SubjectPage />} allowedRoles={["admin"]} />,
     },
     {
       path: "profile",
@@ -62,10 +53,7 @@ const MainRoutes = {
     {
       path: "notification",
       element: (
-        <Guard
-          element={<Noti />}
-          allowedRoles={["admin", "teacher", "student"]}
-        />
+        <Guard element={<Noti />} allowedRoles={["teacher", "student"]} />
       ),
     },
     // level 2
@@ -89,37 +77,25 @@ const MainRoutes = {
     {
       path: "add-subject",
       element: (
-        <Guard
-          element={<FormSubject mode="add" />}
-          allowedRoles={["admin", "teacher"]}
-        />
+        <Guard element={<FormSubject mode="add" />} allowedRoles={["admin"]} />
       ),
     },
     {
       path: "edit-subject/:id",
       element: (
-        <Guard
-          element={<FormSubject mode="edit" />}
-          allowedRoles={["admin", "teacher"]}
-        />
+        <Guard element={<FormSubject mode="edit" />} allowedRoles={["admin"]} />
       ),
     },
     {
       path: "add-classes",
       element: (
-        <Guard
-          element={<FormClasses mode="add" />}
-          allowedRoles={["admin", "teacher"]}
-        />
+        <Guard element={<FormClasses mode="add" />} allowedRoles={["admin"]} />
       ),
     },
     {
       path: "edit-classes/:id",
       element: (
-        <Guard
-          element={<FormClasses mode="edit" />}
-          allowedRoles={["admin", "teacher"]}
-        />
+        <Guard element={<FormClasses mode="edit" />} allowedRoles={["admin"]} />
       ),
     },
   ],

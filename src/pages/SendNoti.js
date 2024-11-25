@@ -17,14 +17,7 @@ import { sendNoti } from "../services/noti.api";
 
 const SendNotiPage = () => {
   const [formFilter, setFormFilter] = useState({
-    role: "teacher",
-    keyword: "",
-    page: 1,
-    pageSize: 1000,
-  });
-
-  const [formFilter2, setFormFilter2] = useState({
-    role: "student",
+    role: "",
     keyword: "",
     page: 1,
     pageSize: 1000,
@@ -38,21 +31,6 @@ const SendNotiPage = () => {
         formFilter.keyword,
         formFilter.page,
         formFilter.pageSize
-      ),
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
-
-  const { data: drivers, isLoading: isDriverLoading } = useQuery(
-    ["STUDENT", formFilter2],
-    () =>
-      getUserList(
-        formFilter2.role,
-        formFilter2.keyword,
-
-        formFilter2.page,
-        formFilter2.pageSize
       ),
     {
       refetchOnWindowFocus: false,

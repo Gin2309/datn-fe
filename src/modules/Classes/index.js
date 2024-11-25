@@ -26,8 +26,6 @@ const Classes = () => {
   const [open, setOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [formFilter, setFormFilter] = useState({
-    role: "",
-    keyword: "",
     page: 1,
     pageSize: 20,
   });
@@ -38,13 +36,7 @@ const Classes = () => {
 
   const { data, isLoading, refetch } = useQuery(
     ["data", formFilter],
-    () =>
-      getClassesList(
-        formFilter.role,
-        formFilter.keyword,
-        formFilter.page,
-        formFilter.pageSize
-      ),
+    () => getClassesList(formFilter.page, formFilter.pageSize),
     {
       refetchOnWindowFocus: false,
     }
