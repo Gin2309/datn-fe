@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import toast from "react-hot-toast";
 import { Box } from "@mui/material";
-import { Button, Select } from "antd";
+import { Button, Select, Table } from "antd";
 import CustomLabel from "../../../components/CustomLabel";
 import { CustomInput } from "../../../components/CustomInput";
 import InputError from "../../../components/InputError";
@@ -78,6 +78,34 @@ const Teacher = ({ id }) => {
 
     updateMuation(submitData);
   };
+
+  const columns = [
+    {
+      title: "Môn học",
+      dataIndex: "subject",
+      key: "subject",
+    },
+    {
+      title: "Hệ số 1",
+      dataIndex: "scoreFactor1",
+      key: "scoreFactor1",
+    },
+    {
+      title: "Hệ số 2",
+      dataIndex: "scoreFactor2",
+      key: "scoreFactor2",
+    },
+    {
+      title: "Hệ số 3",
+      dataIndex: "scoreFactor3",
+      key: "scoreFactor3",
+    },
+    {
+      title: "Điểm trung bình",
+      dataIndex: "averageScore",
+      key: "averageScore",
+    },
+  ];
 
   return (
     <Box padding={3}>
@@ -180,6 +208,22 @@ const Teacher = ({ id }) => {
             />
           </div>
         </div>
+      </div>
+
+      <div className="card mb-6 shadow-md">
+        <h2 className="text-lg font-semibold">Bảng điểm</h2>
+        <div className="flex gap-4">
+          <p>Lớp: {userData?.classes?.[0]?.name}</p>
+          <p>Năm học: {userData?.classes?.[0]?.schoolYear}</p>
+        </div>
+        <Table
+          columns={columns}
+          dataSource={userData?.grades?.map((grade) => ({
+            ...grade,
+            key: grade.id,
+          }))}
+          pagination={false}
+        />
       </div>
     </Box>
   );

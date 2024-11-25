@@ -58,7 +58,7 @@ const account = {
       url: "/admin/grade",
       icon: icons.PermContactCalendarOutlinedIcon,
       breadcrumbs: true,
-      allowedRoles: ["admin", "teacher"],
+      allowedRoles: ["teacher"],
     },
     {
       id: "classes",
@@ -67,7 +67,7 @@ const account = {
       url: "/admin/classes",
       icon: icons.SchoolOutlinedIcon,
       breadcrumbs: true,
-      allowedRoles: ["admin", "teacher"],
+      allowedRoles: ["admin"],
     },
     {
       id: "subject",
@@ -94,6 +94,7 @@ const account = {
       url: "/admin/notification",
       icon: icons.NotificationsNoneOutlinedIcon,
       breadcrumbs: true,
+      allowedRoles: ["teacher", "student"],
     },
   ],
 };

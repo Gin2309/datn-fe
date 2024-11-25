@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 
 import { Box } from "@mui/material";
@@ -19,6 +19,8 @@ import {
   createUser,
   getDetailsUser,
 } from "../../../services/user.api";
+import { getClassesList } from "../../../services/classes.api";
+import { addClass } from "../../../services/teacher.api";
 
 const roleOptions = [
   { value: "admin", label: "Admin" },
@@ -30,10 +32,20 @@ const FormUsers = ({ mode }) => {
   const params = useParams();
   const navigate = useNavigate();
   const id = params.id;
+  const [formFilter, setFormFilter] = useState({ page: 1, pageSize: 999 });
+  const [submitClass, setSubmitClass] = useState([]);
 
   const { data } = useQuery(["DETAIL", id], () => getDetailsUser(id), {
     enabled: !!id,
   });
+
+  const { data: classes, isLoading: isLoadingClasses } = useQuery(
+    ["CLASS", formFilter],
+    () => getClassesList(formFilter.page, formFilter.pageSize),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
 
   const userData = data?.data;
 
@@ -69,20 +81,50 @@ const FormUsers = ({ mode }) => {
     }
   }, [mode, userData]);
 
+  const { mutate: addClassMutation, isLoading: isAdding } = useMutation(
+    (data) => addClass(id, data),
+    {
+      onError: (err) => {
+        toast.error(
+          err.response?.data?.message || "Có lỗi xảy ra, vui lòng thử lại."
+        );
+      },
+    }
+  );
+
+  const handleClassChange = (value) => {
+    setSubmitClass(value);
+  };
+
   const { mutate: mutateCreateUser, isLoading } = useMutation(
     (data) => (mode === "add" ? createUser(data) : updateUser(id, data)),
     {
-      onSuccess: async () => {
+      onSuccess: () => {
         reset();
         navigate("/admin/users", { replace: true });
         toast.success("Thành công");
+      },
+      onError: (err) => {
+        toast.error(
+          err.response?.data?.message || "Có lỗi xảy ra, vui lòng thử lại."
+        );
       },
     }
   );
 
   const onSubmit = (data) => {
     mutateCreateUser(data);
+
+    const classIds = submitClass;
+
+    addClassMutation({ classIds });
   };
+
+  useEffect(() => {
+    if (classes) {
+      setSubmitClass(classes?.data?.map((item) => item.id));
+    }
+  }, [classes]);
 
   const handleCancel = () => {
     navigate(-1);
@@ -239,6 +281,24 @@ const FormUsers = ({ mode }) => {
                 </div>
               )}
             />
+          )}
+
+          {mode === "edit" && (
+            <div>
+              <CustomLabel label="Lớp giảng dạy" />
+              <Select
+                className="!h-10  w-full"
+                placeholder="Thêm lớp học"
+                onChange={handleClassChange}
+                value={submitClass}
+                options={classes?.data?.map((item) => ({
+                  value: item.id,
+                  label: item.name,
+                }))}
+                allowClear
+                mode="multiple"
+              />
+            </div>
           )}
         </div>
       </div>
