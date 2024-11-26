@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Table } from "antd";
+import { Table, Skeleton } from "antd";
 import { CustomInput } from "../components/CustomInput";
 import CustomTabs from "../components/CustomTabs";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { getStudentList, addGrade } from "../services/teacher.api";
 import { getClassesList } from "../services/classes.api";
+import { getTeacher } from "../services/teacher.api";
 import toast from "react-hot-toast";
 
 const GradePage = () => {
@@ -23,12 +24,12 @@ const GradePage = () => {
 
   const { data: classes, isLoading: isLoadingClasses } = useQuery(
     ["CLASS", formFilter],
-    () => getClassesList(formFilter.page, formFilter.pageSize),
+    () => getTeacher(),
     { refetchOnWindowFocus: false }
   );
 
   const tabs =
-    classes?.data?.map((classItem) => ({
+    classes?.data?.classes?.map((classItem) => ({
       key: classItem.id,
       label: classItem.name,
     })) || [];
@@ -36,10 +37,26 @@ const GradePage = () => {
   const transformedData = studentList?.data?.map((item) => ({
     id: item.studentId,
     name: item.name,
-    hs1: item.grade.scoreFactor1 ? parseFloat(item.grade.scoreFactor1) : "",
-    hs2: item.grade.scoreFactor2 ? parseFloat(item.grade.scoreFactor2) : "",
-    hs3: item.grade.scoreFactor3 ? parseFloat(item.grade.scoreFactor3) : "",
-    avg: item.grade.averageScore ? parseFloat(item.grade.averageScore) : "",
+    hs1: item.grade
+      ? item.grade.scoreFactor1
+        ? parseFloat(item.grade.scoreFactor1)
+        : ""
+      : "",
+    hs2: item.grade
+      ? item.grade.scoreFactor2
+        ? parseFloat(item.grade.scoreFactor2)
+        : ""
+      : "",
+    hs3: item.grade
+      ? item.grade.scoreFactor3
+        ? parseFloat(item.grade.scoreFactor3)
+        : ""
+      : "",
+    avg: item.grade
+      ? item.grade.averageScore
+        ? parseFloat(item.grade.averageScore)
+        : ""
+      : "",
   }));
 
   const { mutate: updateGrade, isLoading } = useMutation(
@@ -151,15 +168,28 @@ const GradePage = () => {
   return (
     <div>
       <h2 className="font-semibold mb-4 text-lg">Trang điểm học sinh</h2>
-      <CustomTabs tabs={tabs} onChange={handleTabChange} activeKey={classId} />
-      <Table
-        rowKey="id"
-        columns={columns}
-        dataSource={transformedData || []}
-        loading={isLoading || isLoadingStudents || isLoadingClasses}
-        pagination={false}
-        bordered
-      />
+      {isLoadingClasses || isLoadingStudents ? (
+        <Skeleton active paragraph={{ rows: 3 }} />
+      ) : (
+        <>
+          <div className="mb-4">
+            <CustomTabs
+              tabs={tabs}
+              onChange={handleTabChange}
+              activeKey={classId}
+            />
+          </div>
+
+          <Table
+            rowKey="id"
+            columns={columns}
+            dataSource={transformedData || []}
+            loading={isLoading || isLoadingStudents || isLoadingClasses}
+            pagination={false}
+            bordered
+          />
+        </>
+      )}
     </div>
   );
 };
