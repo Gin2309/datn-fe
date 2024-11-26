@@ -233,7 +233,7 @@ const FormClasses = ({ mode }) => {
             render={({ field: { onChange, value } }) => {
               return (
                 <div>
-                  <CustomLabel label="Giáo viên chủ nhiệm" required />
+                  <CustomLabel label="Giáo viên chủ nhiệm" />
                   <Select
                     options={teacher?.data?.map((teacher) => ({
                       value: teacher.id,

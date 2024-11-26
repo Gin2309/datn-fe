@@ -22,7 +22,7 @@ const AddModal = ({
     page: 1,
     pageSize: 20,
     isAddClass: null,
-    subjectId: subjectId,
+    subjectId: "",
     classesId: "",
   });
   const [studentIds, setStudentIds] = useState([]);

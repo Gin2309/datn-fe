@@ -14,6 +14,6 @@ export const schema = yup.object().shape({
   homeroomTeacher: yup
     .number()
     .transform((value) => (value === null ? "" : value))
-    .required("Đây là trường bắt buộc!"),
+    .nullable(),
   studentIds: yup.array().optional(),
 });
