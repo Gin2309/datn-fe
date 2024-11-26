@@ -38,7 +38,11 @@ const FormSubject = ({ mode }) => {
     enabled: !!id,
   });
 
-  const detail = data?.data;
+  useEffect(() => {
+    if (data) {
+      setStudent(data?.data?.users);
+    }
+  }, [data]);
 
   const {
     getValues,

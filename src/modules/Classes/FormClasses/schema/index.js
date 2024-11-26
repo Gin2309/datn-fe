@@ -11,7 +11,7 @@ export const schema = yup.object().shape({
     .transform((value) => (value === null ? "" : value))
     .trim()
     .required("Đây là trường bắt buộc!"),
-  teacherId: yup
+  homeroomTeacher: yup
     .number()
     .transform((value) => (value === null ? "" : value))
     .required("Đây là trường bắt buộc!"),
