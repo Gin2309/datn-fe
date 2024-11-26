@@ -31,7 +31,7 @@ const FormSubject = ({ mode }) => {
   const [studentIds, setStudentIds] = useState([]);
 
   useEffect(() => {
-    setStudentIds(student.length > 0 ? student.map((item) => item.id) : []);
+    setStudentIds(student?.length > 0 ? student.map((item) => item.id) : []);
   }, [student]);
 
   const { data } = useQuery(["DETAIL", id], () => getDetailSubject(id), {

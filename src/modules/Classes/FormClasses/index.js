@@ -38,7 +38,7 @@ const FormClasses = ({ mode }) => {
   });
 
   useEffect(() => {
-    setStudentIds(student.length > 0 ? student.map((item) => item.id) : []);
+    setStudentIds(student?.length > 0 ? student.map((item) => item.id) : []);
   }, [student]);
 
   const { data } = useQuery(["DETAIL", id], () => getDetailClasses(id), {
@@ -49,7 +49,7 @@ const FormClasses = ({ mode }) => {
 
   useEffect(() => {
     if (data) {
-      setStudent(data?.data?.users);
+      setStudent(data?.data?.user);
     }
   }, [data]);
 
