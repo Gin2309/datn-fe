@@ -36,10 +36,10 @@ const GradePage = () => {
   const transformedData = studentList?.data?.map((item) => ({
     id: item.studentId,
     name: item.name,
-    hs1: parseFloat(item.grade.scoreFactor1),
-    hs2: parseFloat(item.grade.scoreFactor2),
-    hs3: parseFloat(item.grade.scoreFactor3),
-    avg: parseFloat(item.grade.averageScore),
+    hs1: item.grade.scoreFactor1 ? parseFloat(item.grade.scoreFactor1) : "",
+    hs2: item.grade.scoreFactor2 ? parseFloat(item.grade.scoreFactor2) : "",
+    hs3: item.grade.scoreFactor3 ? parseFloat(item.grade.scoreFactor3) : "",
+    avg: item.grade.averageScore ? parseFloat(item.grade.averageScore) : "",
   }));
 
   const { mutate: updateGrade, isLoading } = useMutation(
@@ -80,11 +80,11 @@ const GradePage = () => {
           userId: updatedRecord.id,
           classId: classId,
           scoreFactor1:
-            updatedRecord.hs1 !== null ? Number(updatedRecord.hs1) : null,
+            updatedRecord.hs1 !== null ? Number(updatedRecord.hs1) : "",
           scoreFactor2:
-            updatedRecord.hs2 !== null ? Number(updatedRecord.hs2) : null,
+            updatedRecord.hs2 !== null ? Number(updatedRecord.hs2) : "",
           scoreFactor3:
-            updatedRecord.hs3 !== null ? Number(updatedRecord.hs3) : null,
+            updatedRecord.hs3 !== null ? Number(updatedRecord.hs3) : "",
         },
       ],
     };

@@ -47,6 +47,12 @@ const FormClasses = ({ mode }) => {
 
   const detail = data?.data;
 
+  useEffect(() => {
+    if (data) {
+      setStudent(data?.data?.users);
+    }
+  }, [data]);
+
   const { data: teacher } = useQuery(
     ["data", formFilter],
     () =>
@@ -75,7 +81,7 @@ const FormClasses = ({ mode }) => {
     defaultValues: {
       name: detail?.name || "",
       schoolYear: detail?.schoolYear || "",
-      teacherId: detail?.teacherId || null,
+      homeroomTeacher: detail?.homeroomTeacher || null,
       studentIds: detail?.studentIds || [],
     },
   });
@@ -85,7 +91,7 @@ const FormClasses = ({ mode }) => {
       reset({
         name: detail?.name,
         schoolYear: detail?.schoolYear || "",
-        teacherId: detail?.teacherId || null,
+        homeroomTeacher: detail?.homeroomTeacher || null,
         studentIds: detail?.studentIds || [],
       });
     }
@@ -222,7 +228,7 @@ const FormClasses = ({ mode }) => {
           />
 
           <Controller
-            name="teacherId"
+            name="homeroomTeacher"
             control={control}
             render={({ field: { onChange, value } }) => {
               return (
@@ -244,7 +250,7 @@ const FormClasses = ({ mode }) => {
                     className="w-full h-10"
                     placeholder="Chọn giáo viên chủ nhiệm"
                   />
-                  <InputError error={errors.teacherId?.message} />
+                  <InputError error={errors.homeroomTeacher?.message} />
                 </div>
               );
             }}

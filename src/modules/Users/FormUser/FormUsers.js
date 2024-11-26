@@ -283,7 +283,7 @@ const FormUsers = ({ mode }) => {
             />
           )}
 
-          {mode === "edit" && (
+          {mode === "edit" && userData?.role === "teacher" && (
             <div>
               <CustomLabel label="Lớp giảng dạy" />
               <Select
