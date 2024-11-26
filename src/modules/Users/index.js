@@ -95,7 +95,15 @@ const UserPage = () => {
       dataIndex: "role",
       key: "role",
       align: "center",
-      render: (value) => <span className="capitalize">{value}</span>,
+      render: (value) => {
+        const roleMapping = {
+          admin: "Admin",
+          teacher: "Giáo viên",
+          student: "Học sinh",
+        };
+
+        return <span>{roleMapping[value] || value}</span>;
+      },
     },
     {
       title: "Ngày Tạo",
