@@ -1,26 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Table, Skeleton } from "antd";
 import { CustomInput } from "../components/CustomInput";
 import CustomTabs from "../components/CustomTabs";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { getStudentList, addGrade } from "../services/teacher.api";
-import { getClassesList } from "../services/classes.api";
 import { getTeacher } from "../services/teacher.api";
 import toast from "react-hot-toast";
 
 const GradePage = () => {
-  const userString = localStorage.getItem("user");
-  const user = JSON.parse(userString);
-  const [classId, setClassId] = useState(user?.classes?.[0]?.id || null);
+  const [classId, setClassId] = useState(null);
   const [formFilter, setFormFilter] = useState({ page: 1, pageSize: 20 });
 
   const {
     data: studentList,
     isLoading: isLoadingStudents,
     refetch,
-  } = useQuery(["GRADE", classId], () => getStudentList(classId), {
-    enabled: !!classId,
-  });
+  } = useQuery(["GRADE", classId], () => getStudentList(classId));
 
   const { data: classes, isLoading: isLoadingClasses } = useQuery(
     ["CLASS", formFilter],
@@ -33,6 +28,12 @@ const GradePage = () => {
       key: classItem.id,
       label: classItem.name,
     })) || [];
+
+  useEffect(() => {
+    if (classes?.data?.classes?.length > 0) {
+      setClassId(classes?.data?.classes[0].id);
+    }
+  }, [classes]);
 
   const transformedData = studentList?.data?.map((item) => ({
     id: item.studentId,
@@ -63,7 +64,6 @@ const GradePage = () => {
     (data) => addGrade(data),
     {
       onSuccess: () => {
-        toast.success("Cập nhật điểm thành công!");
         refetch();
       },
       onError: () => {
@@ -168,7 +168,7 @@ const GradePage = () => {
   return (
     <div>
       <h2 className="font-semibold mb-4 text-lg">Trang điểm học sinh</h2>
-      {isLoadingClasses || isLoadingStudents ? (
+      {isLoadingClasses ? (
         <Skeleton active paragraph={{ rows: 3 }} />
       ) : (
         <>
