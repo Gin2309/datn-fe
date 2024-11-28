@@ -15,7 +15,9 @@ const GradePage = () => {
     data: studentList,
     isLoading: isLoadingStudents,
     refetch,
-  } = useQuery(["GRADE", classId], () => getStudentList(classId));
+  } = useQuery(["GRADE", classId], () => getStudentList(classId), {
+    enable: !!classId,
+  });
 
   const { data: classes, isLoading: isLoadingClasses } = useQuery(
     ["CLASS", formFilter],
