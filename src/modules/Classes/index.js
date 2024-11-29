@@ -7,19 +7,9 @@ import { Table, Button } from "antd";
 import toast from "react-hot-toast";
 import DeleteModal from "./DeleteModal";
 import CustomPagination from "../../components/CustomPagination";
-import CustomTabs from "../../components/CustomTabs";
 
 import { IconButton, Tooltip } from "@mui/material";
 import { Delete as DeleteIcon, Edit as EditIcon } from "@mui/icons-material";
-
-import { convertUnixTimestampToISO } from "../../utils/formatTime";
-
-const tabs = [
-  { key: "", label: "Tất cả tài khoản" },
-  { key: "admin", label: "Admin" },
-  { key: "teacher", label: "Giáo viên" },
-  { key: "student", label: "Học sinh" },
-];
 
 const Classes = () => {
   const navigate = useNavigate();
@@ -29,10 +19,6 @@ const Classes = () => {
     page: 1,
     pageSize: 20,
   });
-
-  const currentTab = tabs.find((tab) => tab.key === formFilter.role) || {
-    label: "Tất cả tài khoản",
-  };
 
   const { data, isLoading, refetch } = useQuery(
     ["data", formFilter],
@@ -81,13 +67,6 @@ const Classes = () => {
       key: "quantity",
       align: "center",
       render: (value) => value || "---",
-    },
-    {
-      title: "Ngày Tạo",
-      dataIndex: "createdAt",
-      key: "createdAt",
-      align: "center",
-      render: (createdAt) => convertUnixTimestampToISO(createdAt),
     },
     {
       title: "Thao tác",
