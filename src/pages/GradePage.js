@@ -16,7 +16,7 @@ const GradePage = () => {
     isLoading: isLoadingStudents,
     refetch,
   } = useQuery(["GRADE", classId], () => getStudentList(classId), {
-    enable: !!classId,
+    enabled: !!classId,
   });
 
   const { data: classes, isLoading: isLoadingClasses } = useQuery(
@@ -169,7 +169,7 @@ const GradePage = () => {
 
   return (
     <div>
-      <h2 className="font-semibold mb-4 text-lg">Trang điểm học sinh</h2>
+      <h2 className="font-semibold mb-4 text-lg">Quản lý điểm</h2>
       {isLoadingClasses ? (
         <Skeleton active paragraph={{ rows: 3 }} />
       ) : (
