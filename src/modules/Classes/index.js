@@ -76,7 +76,7 @@ const Classes = () => {
       align: "center",
     },
     {
-      title: "Số học sinh",
+      title: "Sĩ số",
       dataIndex: "quantity",
       key: "quantity",
       align: "center",
