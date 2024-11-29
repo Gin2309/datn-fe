@@ -140,8 +140,8 @@ const FormClasses = ({ mode }) => {
     },
     {
       title: "Họ và tên",
-      dataIndex: "username",
-      key: "username",
+      dataIndex: "fullName",
+      key: "fullName",
       align: "center",
     },
     {
