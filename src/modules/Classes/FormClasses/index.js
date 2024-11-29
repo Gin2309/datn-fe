@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 
 import { Box } from "@mui/material";
-import { Button, Select, Table } from "antd";
+import { Button, Table } from "antd";
 import toast from "react-hot-toast";
 import { CustomInput } from "../../../components/CustomInput";
 import InputError from "../../../components/InputError";
@@ -20,7 +20,6 @@ import {
   createClasses,
   getDetailClasses,
 } from "../../../services/classes.api";
-import { getUserList } from "../../../services/user.api";
 
 const FormClasses = ({ mode }) => {
   const params = useParams();
@@ -29,13 +28,6 @@ const FormClasses = ({ mode }) => {
   const [open, setOpen] = useState(false);
   const [student, setStudent] = useState([]);
   const [studentIds, setStudentIds] = useState([]);
-  const [formFilter, setFormFilter] = useState({
-    role: "teacher",
-    keyword: "",
-    page: 1,
-    pageSize: 20,
-    isAddClass: false,
-  });
 
   useEffect(() => {
     setStudentIds(student?.length > 0 ? student.map((item) => item.id) : []);
@@ -53,21 +45,6 @@ const FormClasses = ({ mode }) => {
     }
   }, [data]);
 
-  const { data: teacher } = useQuery(
-    ["data", formFilter],
-    () =>
-      getUserList(
-        formFilter.role,
-        formFilter.keyword,
-        formFilter.page,
-        formFilter.pageSize,
-        formFilter.isAddClass
-      ),
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
-
   const {
     handleSubmit,
     getValues,
@@ -82,7 +59,6 @@ const FormClasses = ({ mode }) => {
       name: detail?.name || "",
       schoolYear: detail?.schoolYear || "",
       homeroomTeacher: detail?.homeroomTeacher || null,
-      studentIds: detail?.studentIds || [],
     },
   });
 
@@ -92,7 +68,6 @@ const FormClasses = ({ mode }) => {
         name: detail?.name,
         schoolYear: detail?.schoolYear || "",
         homeroomTeacher: detail?.homeroomTeacher || null,
-        studentIds: detail?.studentIds || [],
       });
     }
   }, [mode, detail]);
@@ -225,35 +200,6 @@ const FormClasses = ({ mode }) => {
                 <InputError error={errors.schoolYear?.message} />
               </div>
             )}
-          />
-
-          <Controller
-            name="homeroomTeacher"
-            control={control}
-            render={({ field: { onChange, value } }) => {
-              return (
-                <div>
-                  <CustomLabel label="Giáo viên chủ nhiệm" />
-                  <Select
-                    options={teacher?.data?.map((teacher) => ({
-                      value: teacher.id,
-                      label: teacher.fullName,
-                    }))}
-                    filterOption={(input, option) =>
-                      (option?.label ?? "")
-                        .toLowerCase()
-                        .includes(input.toLowerCase())
-                    }
-                    showSearch={true}
-                    onChange={onChange}
-                    value={value}
-                    className="w-full h-10"
-                    placeholder="Chọn giáo viên chủ nhiệm"
-                  />
-                  <InputError error={errors.homeroomTeacher?.message} />
-                </div>
-              );
-            }}
           />
         </div>
       </div>
