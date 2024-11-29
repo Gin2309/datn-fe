@@ -15,7 +15,7 @@ import { Delete as DeleteIcon, Edit as EditIcon } from "@mui/icons-material";
 import { convertUnixTimestampToISO } from "../../utils/formatTime";
 
 const tabs = [
-  { key: "", label: "Tất cả tài khoản" },
+  { key: "", label: "Tất cả người dùng" },
   { key: "admin", label: "Admin" },
   { key: "teacher", label: "Giáo viên" },
   { key: "student", label: "Học sinh" },
