@@ -65,6 +65,7 @@ const FormUsers = ({ mode }) => {
       phone: userData?.phone || "",
       birthDate: userData?.birthDate || null,
       role: userData?.role || null,
+      classes: userData?.classes || [],
     },
   });
 
@@ -77,6 +78,7 @@ const FormUsers = ({ mode }) => {
         phone: userData?.phone,
         birthDate: userData?.birthDate,
         role: userData?.role,
+        classes: userData?.classes,
       });
     }
   }, [mode, userData]);
@@ -121,10 +123,10 @@ const FormUsers = ({ mode }) => {
   };
 
   useEffect(() => {
-    if (classes) {
-      setSubmitClass(classes?.data?.map((item) => item.id));
+    if (data) {
+      setSubmitClass(data?.data?.classes?.map((item) => item.id));
     }
-  }, [classes]);
+  }, [data]);
 
   const handleCancel = () => {
     navigate(-1);
