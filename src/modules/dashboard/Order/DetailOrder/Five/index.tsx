@@ -17,7 +17,7 @@ const Five = ({ data, oid, createdTime }: { data: any; oid: any; createdTime: st
 
   const { mutate: updateMutation, isLoading: isUpdating } = useMutation((data: any) => updateOrder(data, oid), {
     onSuccess: async () => {
-      await handleSendMail();
+      handleSendMail();
       window.location.replace(`/dashboard/order/payment-success?amount=${amount}`);
     },
     onError: (err: any) => {
@@ -54,7 +54,7 @@ const Five = ({ data, oid, createdTime }: { data: any; oid: any; createdTime: st
 
   const { mutateAsync: sendMailMutation, isLoading: isSending } = useMutation((data: any) => sendOrderMail(data), {
     onError: (err: any) => {
-      message.error(err.response?.data?.message);
+      console.error(err.response?.data?.message);
     },
   });
 
