@@ -1,0 +1,11 @@
+.mySwiper7 .swiper-slide {
+  width: 392px !important;
+  height: 270px;
+}
+
+@media screen and (max-width: 768px) {
+  .mySwiper7 .swiper-slide {
+    width: 306px !important;
+    height: 210px;
+  }
+}

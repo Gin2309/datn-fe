@@ -1,0 +1,186 @@
+[
+  {
+    "id": 1,
+    "serviceName": "Image Enhancement",
+    "subServices": [
+      {
+        "serviceName": "Single Exposure (Basic image enhancement)",
+        "price": 0.8
+      },
+      {
+        "serviceName": "Blended Brackets (HDR) Hand-blended exposures",
+        "price": 1
+      },
+      {
+        "serviceName": "Flambient (Advanced flash blending)",
+        "price": 2
+      }
+    ],
+    "addOn": [
+      {
+        "category": "",
+        "items": [
+          "Fireplace Composite",
+          "Sky Replacement",
+          "TV Screen Replacement",
+          "Minor Blemish Removal",
+          "Resize to MLS",
+          "Add watermark",
+          "Add logo",
+          "Send 2 versions: Full size and Limit size"
+        ]
+      }
+    ],
+    "addExtra": [
+      {
+        "name": "24h",
+        "price": 0.5
+      },
+      {
+        "name": "12h",
+        "price": 1
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "serviceName": "Virtual Staging",
+    "subServices": [
+      {
+        "serviceName": "Add furniture to an empty room",
+        "price": 14
+      },
+      {
+        "serviceName": "Remodel (change the furnitures)",
+        "price": 14
+      }
+    ],
+    "addExtra": [
+      {
+        "name": "24h",
+        "price": 6
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "serviceName": "Day to Dusk",
+    "price": 3,
+    "addExtra": [
+      {
+        "name": "24h",
+        "price": 1
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "serviceName": "Day to Twilight",
+    "price": 2,
+    "addOn": [
+      {
+        "category": "",
+        "items": ["Blend Flash Exposures", "Composite Lighting"]
+      }
+    ],
+    "addExtra": [
+      {
+        "name": "24h",
+        "price": 1
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "serviceName": "Object Removal",
+    "subServices": [
+      {
+        "serviceName": "Small object: 1-4 items (get a quote)",
+        "price": 6
+      },
+      {
+        "serviceName": "Clear Room: Decluttering whole spaces (get a quote)",
+        "price": 6
+      }
+    ],
+    "addExtra": [
+      {
+        "name": "24h",
+        "price": 3
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "serviceName": "Changing Seasons",
+    "price": 10,
+    "addExtra": [
+      {
+        "name": "24h",
+        "price": 5
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "serviceName": "Water in Pool",
+    "price": 4,
+    "addExtra": [
+      {
+        "name": "24h",
+        "price": 2
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "serviceName": "Lawn Replacement",
+    "price": 4,
+    "addExtra": [
+      {
+        "name": "24h",
+        "price": 2
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "serviceName": "Rain to Shine",
+    "price": 10,
+    "addExtra": [
+      {
+        "name": "24h",
+        "price": 5
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "serviceName": "Property Videos",
+    "price": 40,
+    "addOn": [
+      {
+        "category": "Sound Design",
+        "items": ["Music", "Sound Effects", "Voiceovers"]
+      },
+      {
+        "category": "Graphics",
+        "items": [
+          "Titles",
+          "Branding",
+          "Agent Intro/Outro",
+          "Captions",
+          "Lot Lines Overlay",
+          "Site Plan Overlay",
+          "Features Overlay"
+        ]
+      }
+    ],
+    "addExtra": [
+      {
+        "name": "24h",
+        "price": 20
+      }
+    ]
+  }
+]

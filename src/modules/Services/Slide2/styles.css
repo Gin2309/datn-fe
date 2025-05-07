@@ -1,0 +1,18 @@
+.mySwiper2-2 .swiper-slide {
+  width: 600px;
+  height: 595px;
+}
+
+@media screen and (max-width: 1024px) {
+  .mySwiper2-2 .swiper-slide {
+    width: 520px;
+    height: 513px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .mySwiper2-2 .swiper-slide {
+    width: 329px;
+    height: 483px;
+  }
+}
