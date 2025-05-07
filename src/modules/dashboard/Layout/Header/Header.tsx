@@ -72,7 +72,7 @@ const Header = ({ activePage, isOpen }: { activePage: any; isOpen: boolean }) =>
               alt="avatar"
               height={48}
               width={48}
-              className="h-12 w-12 rounded-full"
+              className="h-12 w-12 rounded-full object-cover object-center"
             />
           </div>
         </div>

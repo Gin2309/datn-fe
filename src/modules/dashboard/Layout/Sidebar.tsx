@@ -58,7 +58,7 @@ const Sidebar = ({ isOpen, activePage }: { isOpen: boolean; activePage: any }) =
               alt="avatar"
               height={48}
               width={48}
-              className="h-12 w-12 rounded-full"
+              className="h-12 w-12 object-cover object-center rounded-full"
             />
           </div>
 

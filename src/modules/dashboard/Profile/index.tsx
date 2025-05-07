@@ -7,7 +7,7 @@ import { CustomInput } from "@/components/CustomInput";
 import { schema } from "./schema";
 import PasswordModal from "./PasswordModal";
 
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { profileState } from "@/recoil/state";
 
 import blog from "@/assets/blog.png";
@@ -22,7 +22,7 @@ import InputError from "@/components/InputError";
 import { updateProfile, uploadFile } from "@/api/auth.service";
 
 const Profile = () => {
-  const [profile, setProfile] = useRecoilState(profileState);
+  const profile = useRecoilValue(profileState);
   const ProfileData = profile?.data;
   const [image, setImage] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -58,16 +58,11 @@ const Profile = () => {
     }
   }, [profile, reset]);
 
+ 
   const { mutate: updateMution, isLoading: isUpdating } = useMutation((data: any) => updateProfile(data), {
-    onSuccess: (data:any) => {
-      message.success("Sucess!");
-        setProfile({
-          ...profile,
-          data: {
-            ...profile.data,
-            ...data.data
-          } 
-        });
+    onSuccess: () => {
+      message.success("Success!");
+      profile?.refetch();
     },
     onError(err: any) {
       message.error(err.response?.data?.message);
