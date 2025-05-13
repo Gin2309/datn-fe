@@ -3,6 +3,7 @@ import Image from "next/image";
 import blog from "@/assets/blog.png";
 import Link from "next/link";
 import icon from "@/assets/Link.svg";
+import RenderTruncatedContent from "../../components/truncateHtml";
 
 const Card = ({
   key,
@@ -32,7 +33,9 @@ const Card = ({
           </Link>
           <Image src={icon} alt="" />
         </div>
-        <h2 className="text-[#495057]">{desc}</h2>
+        <h2 className="text-[#495057]">
+        <RenderTruncatedContent content={desc || ""} />
+        </h2>
       </div>
     </div>
   );
