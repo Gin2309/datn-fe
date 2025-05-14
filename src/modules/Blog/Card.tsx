@@ -23,7 +23,10 @@ const Card = ({
   return (
     <div className="flex flex-col flex-shrink-0 w-full xs:w-[387px] gap-6" key={key}>
       <div>
-        <Image src={img} alt="icon" className="w-full xs:w-[387px] h-auto" />
+        <Image src={img} alt="icon" className="w-full xs:w-[387px] h-auto" 
+        width={200}
+        height={200}
+        />
       </div>
       <div className="flex flex-col gap-6 justify-center">
         <h2 className="text-primary text-[12px] uppercase font-medium">{subject}</h2>

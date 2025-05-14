@@ -21,7 +21,7 @@ const Eight = () => {
       <div className="flex flex-wrap gap-8 justify-center">
         {data?.data?.list.map((item: any, index: number) => (
           <div key={index}>
-            <Card key={item.id} slug={item.slug} title={item.title} desc={item.shortDesc} />
+            <Card key={item.id} slug={item.slug} title={item.title} desc={item.shortDesc} img={item.img}/>
           </div>
         ))}
       </div>

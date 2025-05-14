@@ -30,7 +30,7 @@ const Blog = () => {
 
       <div className="flex flex-wrap gap-8 justify-center">
         {data?.data?.list.map((item: any) => (
-          <Card key={item.id} slug={item.slug} title={item.title} desc={item.shortDesc} />
+          <Card key={item.id} slug={item.slug} title={item.title} desc={item.shortDesc} img={item.img}/>
         ))}
       </div>
 
