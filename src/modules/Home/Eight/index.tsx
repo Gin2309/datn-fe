@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import Card from "./Card";
-
+// import Card from "./Card";
+import Card from "@/modules/Blog/Card";
 import { useQuery } from "@tanstack/react-query";
 import { getBlogList } from "@/api/blog.service";
 

@@ -23,16 +23,17 @@ const Card = ({
   return (
     <div className="flex flex-col flex-shrink-0 w-full xs:w-[387px] gap-6" key={key}>
       <div>
-        <Image src={img} alt="icon" className="w-full xs:w-[387px] h-auto" 
+        <Image src={img} alt="icon" className="w-full xs:w-[387px] h-auto max-h-[210px] object-cover object-center" 
         width={200}
         height={200}
+        loading="lazy"
         />
       </div>
       <div className="flex flex-col gap-6 justify-center">
         <h2 className="text-primary text-[12px] uppercase font-medium">{subject}</h2>
         <div className="flex items-start justify-between">
           <Link href={`/blog/${slug}`}>
-            <h1 className="text-[24px] font-medium text-[#212529] hover:opacity-80 cursor-pointer">{truncate(title || "",50)}</h1>
+            <h1 className="text-[24px] font-medium text-[#212529] hover:opacity-80 cursor-pointer">{truncate(title || "",100)}</h1>
           </Link>
           <Image src={icon} alt="" />
         </div>
