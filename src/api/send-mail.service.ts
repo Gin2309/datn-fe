@@ -1,11 +1,7 @@
 import axiosClient from ".";
 
-// export function sendMail(payload: any) {
-//   return axiosClient.post("mail/test", payload);
-// }
-
 export function sendMail(payload: any) {
-  return axiosClient.post("mail/contact-form", payload);
+  return axiosClient.post("mail/contact", payload);
 }
 
 export function sendFeedBack(payload: any) {
