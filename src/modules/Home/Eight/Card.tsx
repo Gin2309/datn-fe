@@ -3,6 +3,7 @@ import Image from "next/image";
 import blog from "@/assets/blog.png";
 import Link from "next/link";
 import icon from "@/assets/Link.svg";
+import { truncate } from "@/helper/utility";
 
 const Card = ({
   img = blog,
@@ -29,7 +30,7 @@ const Card = ({
         <h2 className="text-primary text-[12px] uppercase font-medium">{subject}</h2>
         <div className="flex items-start justify-between">
           <Link href={`/blog/${slug}`}>
-            <h1 className="text-[24px] font-medium text-[#212529] hover:opacity-80 cursor-pointer">{title}</h1>
+            <h1 className="text-[24px] font-medium text-[#212529] hover:opacity-80 cursor-pointer">{truncate(title || "",50)}</h1>
           </Link>
           <Image src={icon} alt="" />
         </div>

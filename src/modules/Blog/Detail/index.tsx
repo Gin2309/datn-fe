@@ -10,7 +10,7 @@ import { formatDateToShort } from "@/helper/utility";
 import blog from "@/assets/blog.png";
 import Card from "../Card";
 
-const DetailBlog = ({ slug }: { slug: string }) => {
+const DetailBlog = ({ slug }: { slug: any }) => {
   const formFilter = {
     page: 1,
     itemsPerPage: 3,

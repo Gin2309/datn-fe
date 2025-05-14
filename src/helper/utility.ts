@@ -63,6 +63,11 @@ export function formatDateToShort(dateString: string): string {
   return `${day} ${month} ${year}`;
 }
 
+export function truncate(text: string, maxLength: number = 20): string {
+  if (text.length <= maxLength) return text;
+  return text.slice(0, maxLength) + "...";
+}
+
 // export function formatCurrencyWithoutSymbol(amount: number): string {
 //   const formattedAmount = new Intl.NumberFormat("vi-VN", {
 //     style: "decimal",
