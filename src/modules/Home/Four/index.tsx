@@ -41,7 +41,7 @@ const Four = () => {
             </h3>
           </div>
           <div className="mx-auto">
-            <Image src={img1} alt="widget" className="w-[325px] h-auto" />
+            <Image src={img1} alt="widget" className="w-[325px] h-auto" loading="lazy"/>
           </div>
         </div>
         {/* 2 */}
@@ -52,7 +52,7 @@ const Four = () => {
             <h3 className="text-[#fff] text-[14px] md:text-[16px]">Vamedi will do the best editing of your images.</h3>
           </div>
           <div className="mx-auto">
-            <Image src={img2} alt="widget" className="w-[325px] h-auto" />
+            <Image src={img2} alt="widget" className="w-[325px] h-auto" loading="lazy"/>
           </div>
         </div>
         {/* 3 */}
@@ -65,7 +65,7 @@ const Four = () => {
             </h3>
           </div>
           <div className="mx-auto">
-            <Image src={img3} alt="widget" className="w-[325px] h-auto" />
+            <Image src={img3} alt="widget" className="w-[325px] h-auto" loading="lazy"/>
           </div>
         </div>
       </div>

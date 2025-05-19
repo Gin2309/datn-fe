@@ -22,7 +22,7 @@ const Home = () => {
   const profile = useRecoilValue(profileState);
   const [formFilter, setFormFilter] = useState({
     page: 1,
-    itemsPerPage: 2,
+    itemsPerPage: 4,
     status: "",
     sortDesc: true,
   });
@@ -116,7 +116,7 @@ const Home = () => {
         </div>
       </div>
 
-      <Services />
+      {/* <Services /> */}
     </div>
   );
 };

@@ -7,7 +7,7 @@ const Card = ({ title, desc, img }: { title: string; desc: string; img: any }) =
       <div className="flex justify-start md:justify-center items-center">
         <div className="h-[48px] w-[48px] border-[4px] border-third rounded-full flex justify-center items-center">
           <div className="h-full w-full bg-primary rounded-full flex justify-center items-center">
-            <Image src={img} alt="icon" height={24} width={24} />
+            <Image src={img} alt="icon" height={24} width={24} loading="lazy"/>
           </div>
         </div>
       </div>

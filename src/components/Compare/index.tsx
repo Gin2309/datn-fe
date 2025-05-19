@@ -31,9 +31,9 @@ const CompareImg: React.FC<CompareImgProps> = ({ type, rounded, before = beforeI
       style={{ "--position": `${sliderValue}%` } as React.CSSProperties}
     >
       <div className="image-container relative">
-        <Image src={before} alt="before image" className="slider-image image-before" />
+        <Image src={before} alt="before image" className="slider-image image-before"  loading="lazy"/>
 
-        <Image src={after} alt="after image" className="slider-image image-after" />
+        <Image src={after} alt="after image" className="slider-image image-after"  loading="lazy"/>
         {/* 
         <div
           className={`px-3 py-1 absolute left-4 bottom-4 backdrop-blur-md border-[1px] border-[#FFFFFF4D] rounded-2xl uppercase text-[#fff] text-[12px] ${
@@ -66,9 +66,9 @@ const CompareImg: React.FC<CompareImgProps> = ({ type, rounded, before = beforeI
           <path
             d="M9 7L4 12L9 17M15 7L20 12L15 17"
             stroke="#343A40"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       </div>

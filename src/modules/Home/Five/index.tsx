@@ -23,23 +23,23 @@ const Five = () => {
         </h1>
         <div className="flex flex-wrap gap-6 justify-center">
           <div className="bg-[#f4f4f4] px-4 py-3 rounded-lg">
-            <Image src={acb} alt="icon" className="h-[40px] w-auto" />
+            <Image src={acb} alt="icon" className="h-[40px] w-auto" loading="lazy"/>
           </div>
 
           <div className="bg-[#f4f4f4] px-4 py-3 rounded-lg">
-            <Image src={mb} alt="icon" className="h-[40px] w-auto" />
+            <Image src={mb} alt="icon" className="h-[40px] w-auto" loading="lazy"/>
           </div>
 
           <div className="bg-[#f4f4f4] px-4 py-3 rounded-lg">
-            <Image src={shb} alt="icon" className="h-[40px] w-auto" />
+            <Image src={shb} alt="icon" className="h-[40px] w-auto" loading="lazy"/>
           </div>
 
           <div className="bg-[#f4f4f4] px-4 py-3 rounded-lg">
-            <Image src={dbs} alt="icon" className="h-[40px] w-auto" />
+            <Image src={dbs} alt="icon" className="h-[40px] w-auto" loading="lazy"/>
           </div>
 
           <div className="bg-[#f4f4f4] px-4 py-3 rounded-lg">
-            <Image src={msb} alt="icon" className="h-[40px] w-auto" />
+            <Image src={msb} alt="icon" className="h-[40px] w-auto" loading="lazy"/>
           </div>
         </div>
       </div>

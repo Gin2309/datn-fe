@@ -31,22 +31,22 @@ const Six = () => {
           <h1 className="font-medium text-[24px] xs:text-[30px] lg:text-[36px]">You need my services if you are a</h1>
           <div className="flex flex-col gap-4">
             <div className="flex gap-3 text-[#495057] ">
-              <Image src={check} alt="icon" />
+              <Image src={check} alt="icon" loading="lazy"/>
               Real Estate Agent
             </div>
 
             <div className="flex gap-3 text-[#495057] ">
-              <Image src={check} alt="icon" />
+              <Image src={check} alt="icon" loading="lazy"/>
               Broker/Brokerage firm
             </div>
 
             <div className="flex gap-3 text-[#495057] ">
-              <Image src={check} alt="icon" />
+              <Image src={check} alt="icon" loading="lazy"/>
               Real Estate Photographer
             </div>
 
             <div className="flex gap-3 text-[#495057] ">
-              <Image src={check} alt="icon" />
+              <Image src={check} alt="icon" loading="lazy"/>
               Association or MLS
             </div>
           </div>

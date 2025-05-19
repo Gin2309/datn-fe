@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Header from "@/modules/Home/Layout/Header";
-import Footer from "@/modules/Home/Layout/Footer";
-import { InitGlobalData } from "@/modules/Home/Layout/InitGlobalData";
+import Header from "@/modules/Layout/Header";
+import Footer from "@/modules/Layout/Footer";
+import { InitGlobalData } from "@/modules/Layout/InitGlobalData";
 import { RecoilRoot } from "recoil";
 
 export default function PagesLayout({

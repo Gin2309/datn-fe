@@ -58,6 +58,7 @@ const DetailBlog = ({ slug }: { slug: any }) => {
               width={1200}
               height={700}
               className="rounded-none md:rounded-2xl object-cover h-[265px] md:h-[365px] lg:h-[516px] w-full"
+              loading="lazy"
             />
           </div>
 

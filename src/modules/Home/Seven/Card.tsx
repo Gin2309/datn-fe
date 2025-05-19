@@ -19,14 +19,14 @@ const Card = ({
   return (
     <div className="rounded-2xl p-9 gap-9 bg-[#fff] flex flex-col shadow-md">
       <div className="flex gap-3 flex-col">
-        <Image src={icon} alt="icon" />
+        <Image src={icon} alt="icon"  loading="lazy"/>
         <h1 className="font-medium text-[#212529] text-[18px]">{title}</h1>
         <h2 className="text-[#495057]">{desc}</h2>
       </div>
 
       <div className="flex gap-4">
         <div>
-          <Image src={img} alt="icon" width={48} height={48} className="rounded-full w-12 h-12 bg-cover bg-center" />
+          <Image src={img} alt="icon" width={48} height={48} className="rounded-full w-12 h-12 bg-cover bg-center"  loading="lazy"/>
         </div>
         <div>
           <h1 className="font-medium text-primary text-[18px]">{name}</h1>
