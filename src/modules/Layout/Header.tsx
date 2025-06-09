@@ -90,20 +90,6 @@ const Header = () => {
 
   const items: MenuProps["items"] = [
     {
-      key: "1",
-      label: (
-        <Link href="/dashboard">
-          <div className="btn-primary h-[40px] w-[140px] flex items-center justify-center">
-            <span className="font-medium">Dashboard</span>
-          </div>
-        </Link>
-      ),
-    },
-    {
-      type: "divider",
-      style: { margin: "4px 0", borderColor: "#E9ECEF" }
-    },
-    {
       key: "2",
       label: (
         <Link href="/dashboard/order">
@@ -144,7 +130,7 @@ const Header = () => {
     {
       key: "4",
       label: (
-        <div className="px-4 pt-1 pb-2 cursor-pointer" onClick={logout}>
+        <div className="px-4 py-1 cursor-pointer" onClick={logout}>
           <div className="text-secondary font-medium flex items-center gap-2">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M17 16L21 12M21 12L17 8M21 12H9M9 21H7C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

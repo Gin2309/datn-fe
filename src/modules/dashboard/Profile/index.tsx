@@ -104,7 +104,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="bg-[#fbfbfb] min-h-screen mb-6">
+    <div className="min-h-screen mb-6">
       <div className="w-full overflow-hidden h-[200px] md:h-[250px] -mt-3">
         <Image src={blog} alt="icon" className="w-full" />
       </div>
