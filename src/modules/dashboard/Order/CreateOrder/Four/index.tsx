@@ -88,8 +88,6 @@ const Four = ({
           <h2 className="text-primary text-[20px] font-medium">{formatCurrency(data?.orderTotal)}</h2>
         </div>
 
-        <div className="btn-primary">Make payment</div>
-
         <div className="flex items-center gap-2 text-[#343A40] font-medium">
           <CustomCheckbox onChange={(checked: any) => handleCheckboxChange(checked)} checked={data.isAgreed === 1} /> I
           agree to the terms and conditions.
@@ -201,8 +199,6 @@ const Four = ({
           <h1 className="text-[#495057] uppercase">Order total</h1>
           <h2 className="text-primary text-[20px] font-medium">{formatCurrency(data?.orderTotal)}</h2>
         </div>
-
-        <div className="btn-primary">Make payment</div>
 
         <div className="flex items-center gap-2 text-[#343A40] font-medium">
           <CustomCheckbox onChange={(checked: any) => handleCheckboxChange(checked)} checked={data.isAgreed === 1} /> I
