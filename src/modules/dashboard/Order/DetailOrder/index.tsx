@@ -271,7 +271,7 @@ const DetailOrder = ({ oid }: { oid: any }) => {
       }
 
       const isValidUrl = (url: string) => {
-        const pattern = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}(:[0-9]{1,5})?(\/[^\s]*)?$/;
+        const pattern = /^(https?:\/\/).+$/;
         return pattern.test(url);
       };
 

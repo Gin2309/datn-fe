@@ -2,6 +2,7 @@
   {
     "id": 1,
     "serviceName": "Image Enhancement",
+    "price": 2,
     "addOn": [
       {
         "category": "",
@@ -31,6 +32,7 @@
   {
     "id": 2,
     "serviceName": "Virtual Staging",
+    "price": 14,
     "addExtra": [
       {
         "name": "24h",
@@ -69,6 +71,7 @@
   {
     "id": 5,
     "serviceName": "Object Removal",
+    "price": 6,
     "addExtra": [
       {
         "name": "24h",
