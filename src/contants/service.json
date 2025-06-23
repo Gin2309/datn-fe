@@ -2,20 +2,6 @@
   {
     "id": 1,
     "serviceName": "Image Enhancement",
-    "subServices": [
-      {
-        "serviceName": "Single Exposure (Basic image enhancement)",
-        "price": 0.8
-      },
-      {
-        "serviceName": "Blended Brackets (HDR) Hand-blended exposures",
-        "price": 1
-      },
-      {
-        "serviceName": "Flambient (Advanced flash blending)",
-        "price": 2
-      }
-    ],
     "addOn": [
       {
         "category": "",
@@ -45,16 +31,6 @@
   {
     "id": 2,
     "serviceName": "Virtual Staging",
-    "subServices": [
-      {
-        "serviceName": "Add furniture to an empty room",
-        "price": 14
-      },
-      {
-        "serviceName": "Remodel (change the furnitures)",
-        "price": 14
-      }
-    ],
     "addExtra": [
       {
         "name": "24h",
@@ -93,16 +69,6 @@
   {
     "id": 5,
     "serviceName": "Object Removal",
-    "subServices": [
-      {
-        "serviceName": "Small object: 1-4 items (get a quote)",
-        "price": 6
-      },
-      {
-        "serviceName": "Clear Room: Decluttering whole spaces (get a quote)",
-        "price": 6
-      }
-    ],
     "addExtra": [
       {
         "name": "24h",
